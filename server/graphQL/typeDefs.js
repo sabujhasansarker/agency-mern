@@ -39,5 +39,6 @@ module.exports = gql`
          file: String
       ): Order
       updateOrder(process: Boolean, orderId: ID!): Order
+      deleteOrder(orderId: ID!): String!
    }
 `;
