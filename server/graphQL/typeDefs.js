@@ -20,11 +20,23 @@ module.exports = gql`
       email: String!
       details: String!
       price: String!
-      file: String!
+      process: String!
+      file: String
    }
    # query
    type Query {
       getOrders: [Order]
       getOrder(orderId: ID!): Order
+   }
+   # Mutation
+   type Mutation {
+      addOrder(
+         name: String!
+         email: String!
+         details: String!
+         price: String!
+         process: String!
+         file: String
+      ): Order
    }
 `;

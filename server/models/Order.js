@@ -4,6 +4,7 @@ const orderSchema = new Schema({
    name: String,
    email: String,
    details: String,
+   process: String,
    price: String,
    file: String,
 });

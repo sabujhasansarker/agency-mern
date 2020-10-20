@@ -27,6 +27,26 @@ module.exports = {
             }
          } catch (err) {
             throw new GraphQLError(err.message);
+            a;
+         }
+      },
+   },
+   Mutation: {
+      async addOrder(_, { name, email, details, price, process, file }) {
+         try {
+            const newOrder = new Order({
+               name,
+               email,
+               details,
+               price,
+               process,
+               file,
+            });
+            await newOrder.save();
+            return newOrder;
+         } catch (err) {
+            throw new GraphQLError(err.message);
+            a;
          }
       },
    },
