@@ -25,6 +25,6 @@ module.exports = gql`
    # query
    type Query {
       getOrders: [Order]
-      getOrder(postId: ID!): Order
+      getOrder(orderId: ID!): Order
    }
 `;
