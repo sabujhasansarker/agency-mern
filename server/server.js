@@ -6,19 +6,10 @@ db();
 const { ApolloServer } = require("apollo-server");
 
 // type define
-const gql = require("graphql-tag");
-const typeDefs = gql`
-   type Query {
-      sayHi: String!
-   }
-`;
+const typeDefs = require("./graphQL/typeDefs");
 
 // Query data
-const resolvers = {
-   Query: {
-      sayHi: () => "Hello World",
-   },
-};
+const resolvers = require("./graphQL/resolver");
 
 const server = new ApolloServer({
    typeDefs,
