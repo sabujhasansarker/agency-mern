@@ -46,7 +46,14 @@ module.exports = {
             return newOrder;
          } catch (err) {
             throw new GraphQLError(err.message);
-            a;
+         }
+      },
+      async updateOrder(_, { process, orderId }) {
+         try {
+            const order = await Order.findById(orderId);
+            return order;
+         } catch (err) {
+            throw new GraphQLError(err.message);
          }
       },
    },

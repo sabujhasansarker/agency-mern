@@ -20,7 +20,7 @@ module.exports = gql`
       email: String!
       details: String!
       price: String!
-      process: String!
+      process: Boolean!
       file: String
    }
    # query
@@ -35,8 +35,9 @@ module.exports = gql`
          email: String!
          details: String!
          price: String!
-         process: String!
+         process: Boolean!
          file: String
       ): Order
+      updateOrder(process: Boolean, orderId: ID!): Order
    }
 `;
