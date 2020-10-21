@@ -24,12 +24,16 @@ module.exports = gql`
    }
    # query
    type Query {
+      #Order
       getOrders: [Order]
       getOrder(orderId: ID!): Order
+      #Admin
+      getAdmins: [Admin]
       getAdmin(email: String!): Admin
    }
    # Mutation
    type Mutation {
+      # Order
       addOrder(
          name: String!
          email: String!
@@ -40,5 +44,7 @@ module.exports = gql`
       ): Order
       updateOrder(process: Boolean, orderId: ID!): Order
       deleteOrder(orderId: ID!): String!
+      #Admin
+      addAdmin(email: String!): Admin
    }
 `;

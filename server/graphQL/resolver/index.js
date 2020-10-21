@@ -5,6 +5,7 @@ module.exports = {
    // add & edit
    Mutation: {
       ...orderResolvers.Mutation,
+      ...adminResolvers.Mutation,
    },
    // query
    Query: {
