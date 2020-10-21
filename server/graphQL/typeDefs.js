@@ -4,9 +4,7 @@ module.exports = gql`
    # Model like schema
    type Admin {
       id: ID!
-      name: String!
       email: String!
-      profilePic: String!
    }
    type Service {
       id: ID!

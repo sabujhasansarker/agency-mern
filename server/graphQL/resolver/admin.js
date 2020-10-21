@@ -37,10 +37,9 @@ module.exports = {
                throw new GraphQLError("Admin already Added");
             } else {
                const newAdmin = new Admin({
-                  name: "name",
                   email,
-                  profilePic: "hello",
                });
+               await newAdmin.save();
                return newAdmin;
             }
          } catch (err) {
