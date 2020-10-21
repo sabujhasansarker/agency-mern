@@ -3,7 +3,7 @@ const { Schema, model } = require("mongoose");
 const AdminSchema = new Schema({
    name: String,
    email: String,
-   profile: String,
+   profilePic: String,
 });
 
-module.exports = model(AdminSchema, "admin");
+module.exports = model("admin", AdminSchema);

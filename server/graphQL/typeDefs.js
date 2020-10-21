@@ -12,7 +12,6 @@ module.exports = gql`
       id: ID!
       title: String!
       icon: String!
-      user: [Admin]
    }
    type Order {
       id: ID!
@@ -27,6 +26,7 @@ module.exports = gql`
    type Query {
       getOrders: [Order]
       getOrder(orderId: ID!): Order
+      getAdmin(email: String!): Admin
    }
    # Mutation
    type Mutation {

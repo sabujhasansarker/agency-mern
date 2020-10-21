@@ -1,4 +1,5 @@
 const orderResolvers = require("./order");
+const adminResolvers = require("./admin");
 
 module.exports = {
    // add & edit
@@ -8,5 +9,6 @@ module.exports = {
    // query
    Query: {
       ...orderResolvers.Query,
+      ...adminResolvers.Query,
    },
 };
