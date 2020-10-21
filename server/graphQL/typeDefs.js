@@ -10,7 +10,7 @@ module.exports = gql`
       id: ID!
       title: String!
       icon: String!
-      admin: Admin
+      admin: Admin!
    }
    type Order {
       id: ID!
@@ -48,5 +48,7 @@ module.exports = gql`
       deleteOrder(orderId: ID!): String!
       #Admin
       addAdmin(email: String!): Admin
+      #Service
+      addService(title: String!, icon: String!, admin: ID!): Service
    }
 `;

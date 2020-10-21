@@ -5,7 +5,7 @@ const serviceSchema = new Schema({
    icon: String,
    admin: {
       type: Schema.Types.ObjectId,
-      ref: "Admin",
+      ref: "admin",
    },
 });
 
