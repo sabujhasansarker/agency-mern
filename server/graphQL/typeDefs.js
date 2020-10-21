@@ -10,6 +10,7 @@ module.exports = gql`
       id: ID!
       title: String!
       icon: String!
+      admin: Admin
    }
    type Order {
       id: ID!

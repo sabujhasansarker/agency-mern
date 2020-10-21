@@ -1,7 +1,6 @@
 const { Schema, model } = require("mongoose");
 
 const serviceSchema = new Schema({
-   id: IDString,
    title: String,
    icon: String,
    admin: {
