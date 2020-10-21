@@ -4,4 +4,4 @@ const AdminSchema = new Schema({
    email: String,
 });
 
-module.exports = model("admin", AdminSchema);
+module.exports = model("Admin", AdminSchema);

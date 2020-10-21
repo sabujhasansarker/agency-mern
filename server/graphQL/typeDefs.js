@@ -28,6 +28,9 @@ module.exports = gql`
       #Admin
       getAdmins: [Admin]
       getAdmin(email: String!): Admin
+      #Service
+      getServices: [Service]
+      getService(serviceId: ID): Service
    }
    # Mutation
    type Mutation {
