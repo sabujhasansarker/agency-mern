@@ -14,6 +14,8 @@ const resolvers = require("./graphQL/resolver");
 const server = new ApolloServer({
    typeDefs,
    resolvers,
+   introspection: true,
+   playground: true,
 });
 
 // port
