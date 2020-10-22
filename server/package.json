@@ -2,10 +2,10 @@
    "name": "server",
    "version": "1.0.0",
    "description": "",
-   "main": "index.js",
+   "main": "server.js",
    "scripts": {
-      "test": "echo \"Error: no test specified\" && exit 1",
-      "start": "nodemon server.js"
+      "start": "node server.js",
+      "server": "nodemon server.js"
    },
    "keywords": [],
    "author": "",
@@ -14,7 +14,9 @@
       "apollo-server": "^2.18.2",
       "config": "^3.3.2",
       "graphql": "^15.3.0",
-      "mongoose": "^5.10.9",
+      "mongoose": "^5.10.9"
+   },
+   "devDependencies": {
       "nodemon": "^2.0.6"
    }
 }

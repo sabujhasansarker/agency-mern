@@ -1,6 +1,6 @@
 const Order = require("../../models/Order");
-
 const { GraphQLError } = require("graphql");
+const { populate } = require("../../models/Order");
 
 module.exports = {
    Query: {
@@ -8,7 +8,7 @@ module.exports = {
          try {
             const orders = await Order.find()
                .sort({ date: -1 })
-               .populate("service")
+               .populate({ path: "service", populate: { path: "admin" } })
                .exec();
             if (orders.length > 0) {
                return orders;
@@ -23,7 +23,7 @@ module.exports = {
          try {
             const order = await Order.findById(orderId)
                .sort({ date: -1 })
-               .populate("service")
+               .populate({ path: "service", populate: { path: "admin" } })
                .exec();
             if (order) {
                return order;
@@ -53,7 +53,7 @@ module.exports = {
             await newOrder.save();
             const order = await Order.findById(newOrder)
                .sort({ date: -1 })
-               .populate("service")
+               .populate({ path: "service", populate: { path: "admin" } })
                .exec();
             return order;
          } catch (err) {
@@ -68,7 +68,7 @@ module.exports = {
                { new: true }
             )
                .sort({ date: -1 })
-               .populate("service")
+               .populate({ path: "service", populate: { path: "admin" } })
                .exec();
             return order;
          } catch (err) {
