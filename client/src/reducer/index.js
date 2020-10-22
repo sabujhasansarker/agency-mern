@@ -1,3 +1,7 @@
 import { combineReducers } from "redux";
 
-export default combineReducers({});
+import service from "./service";
+import order from "./order";
+import admin from "./admin";
+
+export default combineReducers({ service, order, admin });
