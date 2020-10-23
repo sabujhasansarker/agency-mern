@@ -1,42 +1,25 @@
-import React from "react";
-import { gql, useQuery } from "@apollo/client";
+import React, { useEffect } from "react";
 
-// Redux
-import { Provider } from "react-redux";
-import store from "./store";
+import { connect } from "react-redux";
 
-const getOrders = gql`
-   {
-      getOrders {
-         id
-         name
-         service {
-            id
-            title
-            icon
-            admin {
-               id
-               email
-            }
-         }
-      }
-   }
-`;
+import { getOrders } from "./action/order";
 
-function App() {
-   const { loading, error, data } = useQuery(getOrders);
-
-   if (loading) return "Loading...";
-   console.log(data.getOrders);
+const App = ({ getOrders, orders }) => {
+   useEffect(() => {
+      getOrders();
+   }, [orders]);
+   console.log(orders);
    return (
-      <Provider store={store}>
-         <div className="App">
-            <header className="App-header">
-               <h1>Hello</h1>
-            </header>
-         </div>
-      </Provider>
+      <div className="App">
+         <header className="App-header">
+            <h1>Hello boss</h1>
+         </header>
+      </div>
    );
-}
+};
 
-export default App;
+const mapstatetoprops = (state) => ({
+   orders: state.order.orders,
+});
+
+export default connect(mapstatetoprops, { getOrders })(App);

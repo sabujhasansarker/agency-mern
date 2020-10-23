@@ -1,6 +1,10 @@
 import React from "react";
 import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
 
+// Redux
+import { Provider } from "react-redux";
+import store from "./store";
+
 import App from "./App";
 
 const client = new ApolloClient({
@@ -10,6 +14,8 @@ const client = new ApolloClient({
 
 export default (
    <ApolloProvider client={client}>
-      <App />
+      <Provider store={store}>
+         <App />
+      </Provider>
    </ApolloProvider>
 );
