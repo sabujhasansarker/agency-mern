@@ -4,11 +4,14 @@ import { connect } from "react-redux";
 
 import { getOrders } from "./action/order";
 
+import { GET_ORDERS_QUERY } from "./graphQl/order";
+import { useQuery } from "@apollo/react-hooks";
+
 const App = ({ getOrders, orders }) => {
+   const { loading, data } = useQuery(GET_ORDERS_QUERY);
    useEffect(() => {
-      getOrders();
-   }, [orders]);
-   console.log(orders);
+      data && getOrders(data && data.getOrders);
+   }, [loading]);
    return (
       <div className="App">
          <header className="App-header">
