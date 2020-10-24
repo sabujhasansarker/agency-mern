@@ -41,21 +41,26 @@ module.exports = {
          { name, email, details, price, process, file, serviceId }
       ) {
          try {
-            const newOrder = new Order({
-               name,
-               email,
-               details,
-               price,
-               process,
-               file,
-               service: serviceId,
-            });
-            await newOrder.save();
-            const order = await Order.findById(newOrder)
-               .sort({ date: -1 })
-               .populate({ path: "service", populate: { path: "admin" } })
-               .exec();
-            return order;
+            const findOrder = await Order.findOne({ file });
+            if (!findOrder) {
+               const newOrder = new Order({
+                  name,
+                  email,
+                  details,
+                  price,
+                  process,
+                  file,
+                  service: serviceId,
+               });
+               await newOrder.save();
+               const order = await Order.findById(newOrder)
+                  .sort({ date: -1 })
+                  .populate({ path: "service", populate: { path: "admin" } })
+                  .exec();
+               return order;
+            } else {
+               throw new GraphQLError("file already match");
+            }
          } catch (err) {
             throw new GraphQLError(err.message);
          }

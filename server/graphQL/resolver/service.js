@@ -36,17 +36,22 @@ module.exports = {
    Mutation: {
       async addService(_, { title, icon, admin }) {
          try {
-            const newService = new Service({
-               title,
-               icon,
-               admin,
-            });
-            await newService.save();
-            const service = await Service.findById(newService)
-               .sort({ date: -1 })
-               .populate("admin")
-               .exec();
-            return service;
+            const findService = await Service.find({ icon });
+            if (findService) {
+               const newService = new Service({
+                  title,
+                  icon,
+                  admin,
+               });
+               await newService.save();
+               const service = await Service.findById(newService)
+                  .sort({ date: -1 })
+                  .populate("admin")
+                  .exec();
+               return service;
+            } else {
+               throw new GraphQLError("Icon match");
+            }
          } catch (err) {
             throw new GraphQLError(err.message);
          }

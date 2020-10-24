@@ -19,7 +19,7 @@ module.exports = gql`
       details: String!
       price: String!
       process: Boolean!
-      file: String
+      file: String!
       service: Service!
    }
    # query
