@@ -1,41 +1,62 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { Link } from "react-router-dom";
 
 import logo from "../../images/logo.png";
 
 const Navbar = () => {
-   const [scrollPosition, setSrollPosition] = useState(0);
-
+   const [scrollPosition, setScrollPosition] = useState(0);
+   const toggle = useRef(false);
+   const [toggleMenu, setToggleMenu] = useState(false);
    useEffect(() => {
       window.addEventListener("scroll", () =>
-         setSrollPosition(window.pageYOffset)
+         setScrollPosition(window.pageYOffset)
       );
    }, []);
+   const onClick = () => {
+      toggle.current = !toggle.current;
+      setToggleMenu(!toggleMenu);
+      toggle.current
+         ? document.body.classList.add("nav-open")
+         : document.body.classList.remove("nav-open");
+   };
    return (
       <header className={`${scrollPosition > 100 ? "stick-nav" : ""}`}>
          <nav className="container">
             <Link to="/">
                <img src={logo} alt="" />
             </Link>
-            <ul>
-               <li>
-                  <Link to="/">Home</Link>
-               </li>
-               <li>
-                  <Link to="/">Our Portfolio</Link>
-               </li>
-               <li>
-                  <Link to="/">Our Team</Link>
-               </li>
-               <li>
-                  <Link to="/">Contact Us</Link>
-               </li>
-               <li>
-                  <Link to="/" className="btn-primary">
-                     Login
-                  </Link>
-               </li>
-            </ul>
+            <div className="navbar-right">
+               <div className="responsive" onClick={() => onClick()}>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </div>
+               <div
+                  className={`nav-container ${
+                     toggleMenu ? "open-nav" : "close-nav"
+                  } `}
+               >
+                  <ul>
+                     <li>
+                        <Link to="/">Home</Link>
+                     </li>
+                     <li>
+                        <Link to="/">Our Portfolio</Link>
+                     </li>
+                     <li>
+                        <Link to="/">Our Team</Link>
+                     </li>
+                     <li>
+                        <Link to="/">Contact Us</Link>
+                     </li>
+                     <li>
+                        <Link to="/" className="btn-primary">
+                           Login
+                        </Link>
+                     </li>
+                  </ul>
+               </div>
+            </div>
          </nav>
       </header>
    );

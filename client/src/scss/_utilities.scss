@@ -7,6 +7,12 @@
 .container {
    width: 80%;
    margin: 0 auto;
+   @include custom(1040) {
+      width: 90%;
+   }
+   @include custom(920) {
+      width: 95%;
+   }
 }
 
 .btn-primary {

@@ -4,9 +4,17 @@
 @import "./scss/utilities";
 
 // Navbar
+body.nav-open {
+   overflow: hidden;
+}
 .stick-nav {
    background: white;
    padding: 1rem 0;
+   // @include custom(870) {
+   //    .open-nav ul {
+   //       top: 50%;
+   //    }
+   // }
 }
 header {
    position: fixed;
@@ -17,10 +25,57 @@ header {
    transition: 1s all;
    nav {
       @include flex(center, space-between);
+      @include custom(870) {
+         align-items: unset;
+         .nav-container {
+            top: -100%;
+            position: fixed;
+            transition: 1s all;
+            height: 100vh;
+            background: white;
+            width: 100%;
+            z-index: -1;
+            left: 0;
+            ul {
+               display: block;
+               position: absolute;
+               top: 60%;
+               left: 50%;
+               transform: translate(-50%, -50%);
+               text-align: center;
+
+               li {
+                  margin-bottom: 1rem;
+                  margin-left: 0;
+               }
+            }
+         }
+         .open-nav {
+            top: 0 !important;
+         }
+      }
+      .responsive {
+         display: none;
+         @include custom(870) {
+            display: block;
+            float: right;
+         }
+         span {
+            transition: 0.5s all;
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin-top: 0.4rem;
+            background: #3f90fc;
+         }
+      }
       ul {
          list-style: none;
          @include flex(center, space-between);
          color: #474747;
+         @include custom(870) {
+            // display: none;
+         }
          li {
             margin-left: 40px;
          }
