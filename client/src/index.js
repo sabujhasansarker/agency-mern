@@ -1,5 +1,5 @@
 import { render } from "react-dom";
-import "./index.css";
+import "./index.scss";
 import * as serviceWorker from "./serviceWorker";
 
 import ApolloProvider from "./ApolloProvider";

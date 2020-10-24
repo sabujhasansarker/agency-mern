@@ -1,9 +1,8 @@
 import React, { useEffect } from "react";
-
+// Redux
 import { connect } from "react-redux";
-
 import { getOrders } from "./action/order";
-
+// GraphQL
 import { GET_ORDERS_QUERY } from "./graphQl/order";
 import { useQuery } from "@apollo/react-hooks";
 
@@ -21,8 +20,8 @@ const App = ({ getOrders, orders }) => {
    );
 };
 
-const mapstatetoprops = (state) => ({
+const mapStateToProps = (state) => ({
    orders: state.order.orders,
 });
 
-export default connect(mapstatetoprops, { getOrders })(App);
+export default connect(mapStateToProps, { getOrders })(App);
