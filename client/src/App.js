@@ -11,6 +11,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import Home from "./components/pages/Home";
+import Navbar from "./components/layout/Navbar";
 
 const App = ({ getOrders, orders }) => {
    const { loading, data } = useQuery(GET_ORDERS_QUERY);
@@ -19,6 +20,7 @@ const App = ({ getOrders, orders }) => {
    }, [loading]);
    return (
       <Router>
+         <Navbar />
          <Switch>
             <Route exact to="/" component={Home} />
          </Switch>

@@ -3,12 +3,39 @@
 @import "./scss/mixing";
 @import "./scss/utilities";
 
+// Navbar
+.stick-nav {
+   background: white;
+   padding: 1rem 0;
+}
+header {
+   position: fixed;
+   z-index: 99;
+   top: 0px;
+   width: 100%;
+   padding: 3rem 0;
+   transition: 1s all;
+   nav {
+      @include flex(center, space-between);
+      ul {
+         list-style: none;
+         @include flex(center, space-between);
+         color: #474747;
+         li {
+            margin-left: 40px;
+         }
+      }
+   }
+}
+
+// Banner
 .banner {
    background: $bg;
    clip-path: polygon(0 0, 100% 0, 100% 85%, 0% 100%);
-   padding: 4rem 0;
    overflow: hidden;
    position: relative;
+   padding-top: 13rem;
+   padding-bottom: 90px;
    @include custom(430) {
       clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
    }
@@ -47,6 +74,7 @@
    }
 }
 
+// Client
 .client {
    .container {
       @include flex(center, space-between);
