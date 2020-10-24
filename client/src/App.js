@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 // Redux
 import { connect } from "react-redux";
 import { getOrders } from "./action/order";
@@ -6,17 +6,23 @@ import { getOrders } from "./action/order";
 import { GET_ORDERS_QUERY } from "./graphQl/order";
 import { useQuery } from "@apollo/react-hooks";
 
+// Router
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+// Components
+import Home from "./components/pages/Home";
+
 const App = ({ getOrders, orders }) => {
    const { loading, data } = useQuery(GET_ORDERS_QUERY);
    useEffect(() => {
       data && getOrders(data && data.getOrders);
    }, [loading]);
    return (
-      <div className="App">
-         <header className="App-header">
-            <h1>Hello boss</h1>
-         </header>
-      </div>
+      <Router>
+         <Switch>
+            <Route exact to="/" component={Home} />
+         </Switch>
+      </Router>
    );
 };
 

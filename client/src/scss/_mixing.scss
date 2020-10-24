@@ -1,0 +1,25 @@
+@mixin btn($bg, $color) {
+   display: inline-block;
+   border-radius: 5px;
+   padding: 10px 50px;
+   margin: 3px;
+   background: $bg;
+   text-decoration: none;
+   color: $color;
+   &:hover {
+      background: lighten($bg, 10%);
+   }
+}
+
+@mixin flex($align, $justify) {
+   display: flex;
+   align-items: $align;
+   justify-content: $justify;
+}
+
+// Media query
+@mixin custom($screen) {
+   @media only screen and (max-width: #{$screen}px) {
+      @content;
+   }
+}
