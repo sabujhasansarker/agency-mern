@@ -9,6 +9,9 @@
    padding: 4rem 0;
    overflow: hidden;
    position: relative;
+   @include custom(430) {
+      clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%);
+   }
    &-left {
       width: 394px;
       @include custom(680) {
@@ -40,6 +43,67 @@
       @include flex(center, space-between);
       @include custom(690) {
          display: block;
+      }
+   }
+}
+
+.client {
+   .container {
+      @include flex(center, space-between);
+      a {
+         width: 25%;
+         margin: 30px 60px;
+         @include custom(1000) {
+            margin: 30px 20px;
+         }
+         @include custom(600) {
+            margin: 30px 10px;
+         }
+         @include custom(430) {
+            width: unset;
+         }
+         img {
+            width: 80%;
+            @include custom(1280) {
+               width: 100%;
+            }
+            @include custom(430) {
+               width: 60%;
+            }
+            @include custom(320) {
+               width: 40%;
+            }
+         }
+         &:first-child {
+            margin-left: 0;
+         }
+         &:last-child {
+            margin-right: 0;
+         }
+      }
+      a.uber img {
+         width: 60%;
+         @include custom(320) {
+            width: 30%;
+         }
+      }
+      a.netflix img {
+         width: 70%;
+         @include custom(320) {
+            width: 35%;
+         }
+      }
+
+      @include custom(430) {
+         display: grid;
+         grid-template-columns: 1fr 1fr;
+         grid-template-rows: 1fr;
+         gap: 0px 0px;
+      }
+
+      @include custom(320) {
+         grid-template-columns: 1fr;
+         text-align: center;
       }
    }
 }

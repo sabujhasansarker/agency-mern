@@ -1,8 +1,7 @@
 @mixin btn($bg, $color) {
    display: inline-block;
    border-radius: 5px;
-   padding: 10px 50px;
-   margin: 3px;
+   padding: 10px 60px;
    background: $bg;
    text-decoration: none;
    color: $color;
