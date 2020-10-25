@@ -190,8 +190,15 @@ footer {
    padding: 62px 0;
    .container {
       @include flex(flex-start, space-between);
+      @include custom(626) {
+         display: block;
+      }
       .left {
          width: 43%;
+         @include custom(626) {
+            width: 100%;
+            margin-bottom: 3rem;
+         }
          h2 {
             font-size: 34px;
          }
@@ -203,6 +210,9 @@ footer {
       }
       .right {
          width: 50%;
+         @include custom(626) {
+            width: 100%;
+         }
          input,
          textArea {
             width: 100%;
