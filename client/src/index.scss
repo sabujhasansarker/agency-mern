@@ -10,11 +10,6 @@ body.nav-open {
 .stick-nav {
    background: white;
    padding: 1rem 0;
-   // @include custom(870) {
-   //    .open-nav ul {
-   //       top: 50%;
-   //    }
-   // }
 }
 header {
    position: fixed;
@@ -43,7 +38,6 @@ header {
                left: 50%;
                transform: translate(-50%, -50%);
                text-align: center;
-
                li {
                   margin-bottom: 1rem;
                   margin-left: 0;
@@ -51,7 +45,7 @@ header {
             }
          }
          .open-nav {
-            top: 0 !important;
+            top: 0;
          }
       }
       .responsive {
@@ -66,16 +60,16 @@ header {
             width: 30px;
             height: 3px;
             margin-top: 0.4rem;
-            background: #3f90fc;
+            background: lighten($buttonColor, 10%);
+            &:last-child {
+               height: 3.5px;
+            }
          }
       }
       ul {
          list-style: none;
          @include flex(center, space-between);
          color: #474747;
-         @include custom(870) {
-            // display: none;
-         }
          li {
             margin-left: 40px;
          }
@@ -187,6 +181,44 @@ header {
       @include custom(320) {
          grid-template-columns: 1fr;
          text-align: center;
+      }
+   }
+}
+// Footer
+footer {
+   background: $bg;
+   padding: 62px 0;
+   .container {
+      @include flex(flex-start, space-between);
+      .left {
+         width: 43%;
+         h2 {
+            font-size: 34px;
+         }
+         p {
+            margin-top: 32px;
+            font-size: 14px;
+            font-weight: 300;
+         }
+      }
+      .right {
+         width: 50%;
+         input,
+         textArea {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 12px 20px;
+            margin-bottom: 1rem;
+            border: 0px solid;
+            border-radius: 4px;
+            resize: none;
+         }
+         textArea {
+            height: 250px;
+         }
+         input.btn-primary {
+            width: 180px !important;
+         }
       }
    }
 }
