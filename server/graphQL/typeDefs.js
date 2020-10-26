@@ -22,11 +22,6 @@ module.exports = gql`
       file: String!
       service: Service!
    }
-   type Mail {
-      email: String!
-      name: String!
-      message: String!
-   }
    # query
    type Query {
       #Order
@@ -59,6 +54,6 @@ module.exports = gql`
       addService(title: String!, icon: String!, admin: ID!): Service
       deleteService(serviceId: ID!): String
       #Mail
-      sendMail(email: String!, name: String!, message: String!): Mail!
+      sendMail(email: String!, name: String!, message: String!): String
    }
 `;
