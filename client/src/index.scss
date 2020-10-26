@@ -222,6 +222,9 @@ footer {
             border: 0px solid;
             border-radius: 4px;
             resize: none;
+            &:focus {
+               outline: none;
+            }
          }
          textArea {
             height: 250px;

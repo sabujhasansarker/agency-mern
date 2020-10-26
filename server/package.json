@@ -14,7 +14,8 @@
       "apollo-server": "^2.18.2",
       "config": "^3.3.2",
       "graphql": "^15.3.0",
-      "mongoose": "^5.10.9"
+      "mongoose": "^5.10.9",
+      "nodemailer": "^6.4.14"
    },
    "devDependencies": {
       "nodemon": "^2.0.6"
