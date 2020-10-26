@@ -5,6 +5,7 @@
    background: $bg;
    text-decoration: none;
    color: $color;
+   cursor: pointer;
    &:hover {
       background: lighten($bg, 10%);
    }

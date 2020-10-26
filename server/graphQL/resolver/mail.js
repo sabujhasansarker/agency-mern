@@ -7,6 +7,7 @@ module.exports = {
    Mutation: {
       async sendMail(_, { email, name, message }) {
          try {
+            console.log("send mail");
             let transporter = nodemailer.createTransport({
                service: "gmail",
                port: 554,
@@ -40,12 +41,13 @@ module.exports = {
                transporter.sendMail(mailO, function (error, info) {
                   if (error) {
                      console.log(error);
-                     return "Mail dose not sent";
+                     return new GraphQLError("Mail dose not sent");
                   } else {
                      console.log("Email sent: " + info.response);
-                     return "Mail sent";
+                     return new GraphQLError("Mail sent");
                   }
                });
+               return new GraphQLError("OK");
             });
          } catch (err) {
             throw new GraphQLError(err.message);
