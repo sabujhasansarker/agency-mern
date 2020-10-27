@@ -7,6 +7,7 @@ import google from "../../images/google.png";
 import uber from "../../images/uber.png";
 import netflix from "../../images/netflix.png";
 import airbnb from "../../images/airbnb.png";
+import Service from "../template/Service";
 
 const Home = () => {
    const clients = [
@@ -28,6 +29,7 @@ const Home = () => {
                ))}
             </div>
          </section>
+         <Service />
       </Fragment>
    );
 };
