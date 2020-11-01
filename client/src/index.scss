@@ -238,11 +238,73 @@ footer {
 
 // service
 .service {
+   padding-top: 104px;
    h2 {
       text-align: center;
       font-weight: 500;
       span {
          color: #7ab259;
+      }
+   }
+   .slider-container {
+      @include flex(center, space-between);
+      margin-top: 77px;
+      padding-bottom: 105px;
+      .slider-section {
+         // @include flex(center, space-between);
+         width: 90%;
+         margin: 0 auto;
+         position: relative;
+         overflow: hidden;
+         height: 300px;
+      }
+      .active {
+         background: white;
+         box-shadow: -2px 4px 16px -7px rgba(0, 0, 0, 0.75);
+         order: 0;
+         position: absolute;
+         top: 0%;
+         left: 50%;
+         transform: translate(-50%, 0%);
+      }
+      .active-left {
+         left: 0;
+      }
+      .active-right {
+         right: 0;
+      }
+      .deactive-right {
+         right: -200%;
+      }
+      .deactive-left {
+         left: -200%;
+      }
+      .single-slider {
+         position: absolute;
+         margin: 0 25px;
+         top: 0;
+         width: 30%;
+         cursor: grab;
+         text-align: center;
+         padding: 34px;
+         border-radius: 10px;
+         background: white;
+         transition: 1s all;
+
+         img {
+            width: 70px;
+            display: block;
+            margin: auto;
+         }
+         h4 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 16px;
+         }
+         p {
+            font-size: 16px;
+            font-weight: 300;
+         }
       }
    }
 }
