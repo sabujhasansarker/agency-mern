@@ -17,7 +17,7 @@ const Service = () => {
                Provide awesome <span>services</span>
             </h2>
             <div className="slider-container">
-               {data.length > active && <p onClick={() => left()}>Left</p>}
+               {active !== 0 && <p onClick={() => left()}>Left</p>}
                <div className="slider-section">
                   {data.map((d, i) => (
                      <div
@@ -39,7 +39,9 @@ const Service = () => {
                      </div>
                   ))}
                </div>
-               <p onClick={() => right()}>right</p>
+               {data.length !== active + 1 && (
+                  <p onClick={() => right()}>right</p>
+               )}
             </div>
          </div>
       </section>
