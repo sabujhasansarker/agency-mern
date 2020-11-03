@@ -9,6 +9,16 @@ const Service = () => {
       arrows: false,
       centerPadding: "0px",
       speed: 500,
+      responsive: [
+         {
+            breakpoint: 513,
+            settings: {
+               slidesToShow: 1,
+               slidesToScroll: 1,
+               centerPadding: "30px",
+            },
+         },
+      ],
    };
    const data = [
       {
