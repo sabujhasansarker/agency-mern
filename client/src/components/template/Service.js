@@ -2,8 +2,28 @@ import React, { useState } from "react";
 import phn from "../../images/iphone.png";
 
 const Service = () => {
-   const data = [1, 2, 3, 4];
+   const data = [
+      {
+         name: "Demo 1",
+         text:
+            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
+         icon: phn,
+      },
+      {
+         name: "Demo 2",
+         text:
+            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
+         icon: phn,
+      },
+      {
+         name: "Demo 3",
+         text:
+            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
+         icon: phn,
+      },
+   ];
    const [active, setActive] = useState(1);
+
    const left = () => {
       setActive(active - 1);
    };
@@ -30,12 +50,9 @@ const Service = () => {
                         }`}
                         key={i}
                      >
-                        <img src={phn} alt="" />
-                        <h4>Web & Mobile design</h4>
-                        <p>
-                           We craft stunning and amazing web UI, using a well
-                           drrafted UX to fit your product.
-                        </p>
+                        <img src={d.icon} alt="" />
+                        <h4>{d.name}</h4>
+                        <p>{d.text}</p>
                      </div>
                   ))}
                </div>

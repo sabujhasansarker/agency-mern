@@ -269,14 +269,18 @@ footer {
       }
       .active-left {
          left: 0;
+         transition-delay: 0.6s;
       }
       .active-right {
          right: 0;
+         transition-delay: 0.6s;
       }
       .deactive-right {
          right: -200%;
+         transition-delay: 0.6s;
       }
       .deactive-left {
+         transition-delay: 0.6s;
          left: -200%;
       }
       .single-slider {
@@ -289,7 +293,7 @@ footer {
          padding: 34px;
          border-radius: 10px;
          background: white;
-         transition: 1s all;
+         transition: 0.5s all;
 
          img {
             width: 70px;

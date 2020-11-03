@@ -10,6 +10,7 @@ module.exports = gql`
       id: ID!
       title: String!
       icon: String!
+      dec: String!
       admin: Admin!
    }
    type Order {
@@ -51,7 +52,12 @@ module.exports = gql`
       #Admin
       addAdmin(email: String!): Admin
       #Service
-      addService(title: String!, icon: String!, admin: ID!): Service
+      addService(
+         title: String!
+         icon: String!
+         dec: String!
+         admin: ID!
+      ): Service
       deleteService(serviceId: ID!): String
       #Mail
       sendMail(email: String!, name: String!, message: String!): String
