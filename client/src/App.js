@@ -4,6 +4,7 @@ import { connect } from "react-redux";
 import { getOrders } from "./action/order";
 // GraphQL
 import { GET_ORDERS_QUERY } from "./graphQl/order";
+import { GET_SERVICES } from "./graphQl/service";
 import { useQuery } from "@apollo/react-hooks";
 
 // Router
@@ -16,9 +17,11 @@ import Footer from "./components/layout/Footer";
 
 const App = ({ getOrders, orders }) => {
    const { loading, data } = useQuery(GET_ORDERS_QUERY);
+   const { data: services } = useQuery(GET_SERVICES);
    useEffect(() => {
       data && getOrders(data && data.getOrders);
    }, [loading]);
+   console.log(services);
    return (
       <Router>
          <Navbar />

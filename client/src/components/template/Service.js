@@ -1,7 +1,15 @@
 import React, { useState } from "react";
+import Slider from "react-slick";
 import phn from "../../images/iphone.png";
 
 const Service = () => {
+   const settings = {
+      slidesToShow: 3,
+      centerMode: true,
+      arrows: false,
+      centerPadding: "0px",
+      speed: 500,
+   };
    const data = [
       {
          name: "Demo 1",
@@ -21,44 +29,36 @@ const Service = () => {
             "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
          icon: phn,
       },
+      {
+         name: "Demo 4",
+         text:
+            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
+         icon: phn,
+      },
+      {
+         name: "Demo 5",
+         text:
+            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
+         icon: phn,
+      },
    ];
-   const [active, setActive] = useState(1);
 
-   const left = () => {
-      setActive(active - 1);
-   };
-   const right = () => {
-      setActive(active + 1);
-   };
    return (
       <section className="service">
          <div className="container">
             <h2>
                Provide awesome <span>services</span>
             </h2>
-            <div className="slider-container">
-               {active !== 0 && <p onClick={() => left()}>Left</p>}
-               <div className="slider-section">
+            <div>
+               <Slider {...settings}>
                   {data.map((d, i) => (
-                     <div
-                        className={`single-slider ${
-                           active === i ? "active" : ""
-                        } ${active + 1 === i ? "active-right" : ""} ${
-                           active - 1 === i ? "active-left" : ""
-                        } ${active - 1 > i ? "deactive-right" : ""} ${
-                           active + 1 < i ? "deactive-left" : ""
-                        }`}
-                        key={i}
-                     >
-                        <img src={d.icon} alt="" />
-                        <h4>{d.name}</h4>
+                     <div className="" kye={i}>
+                        <img src={d.icon} alt=" " />
+                        <h3>{d.name}</h3>
                         <p>{d.text}</p>
                      </div>
                   ))}
-               </div>
-               {data.length !== active + 1 && (
-                  <p onClick={() => right()}>right</p>
-               )}
+               </Slider>
             </div>
          </div>
       </section>
