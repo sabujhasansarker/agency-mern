@@ -304,3 +304,46 @@ footer {
       }
    }
 }
+
+// feedback
+.feedback {
+   padding: 86px 0;
+   div:focus {
+      outline: none;
+   }
+   .slick-slider.slick-initialized {
+      padding: 100px 0;
+   }
+   .client {
+      width: 90%;
+      margin: 0 auto;
+      padding: 25px;
+      border: 1px solid #bfbfbf;
+      box-sizing: border-box;
+      border-radius: 4px;
+      min-height: 212px;
+      p {
+         color: #707070;
+         margin-top: 14px;
+      }
+      &-header {
+         @include flex(center, flex-start);
+         img {
+            width: 64px;
+         }
+      }
+
+      &-name {
+         margin-left: 18px;
+         h4 {
+            font-size: 18px;
+         }
+         p {
+            font-size: 16px;
+            font-weight: 500;
+            color: black;
+            margin: 0;
+         }
+      }
+   }
+}

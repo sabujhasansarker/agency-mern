@@ -8,7 +8,9 @@ const Service = () => {
       centerMode: true,
       arrows: false,
       centerPadding: "0px",
-      speed: 500,
+      autoplay: true,
+      speed: 3000,
+      autoplaySpeed: 3000,
       responsive: [
          {
             breakpoint: 513,

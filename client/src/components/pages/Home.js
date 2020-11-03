@@ -9,6 +9,7 @@ import netflix from "../../images/netflix.png";
 import airbnb from "../../images/airbnb.png";
 import Service from "../template/Service";
 import Work from "../template/Work";
+import FeedBack from "../template/FeedBack";
 
 const Home = () => {
    const clients = [
@@ -32,6 +33,7 @@ const Home = () => {
          </section>
          <Service />
          <Work />
+         <FeedBack />
       </Fragment>
    );
 };

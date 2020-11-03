@@ -44,7 +44,7 @@ const Work = () => {
 
             <Slider {...settings}>
                {works.map((work, index) => (
-                  <div className="single" ke={index}>
+                  <div className="single" key={index}>
                      <img src={work.src} alt="" />
                   </div>
                ))}
