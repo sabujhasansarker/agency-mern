@@ -8,6 +8,7 @@ import uber from "../../images/uber.png";
 import netflix from "../../images/netflix.png";
 import airbnb from "../../images/airbnb.png";
 import Service from "../template/Service";
+import Work from "../template/Work";
 
 const Home = () => {
    const clients = [
@@ -30,6 +31,7 @@ const Home = () => {
             </div>
          </section>
          <Service />
+         <Work />
       </Fragment>
    );
 };

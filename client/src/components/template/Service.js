@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import Slider from "react-slick";
 import phn from "../../images/iphone.png";
 
@@ -56,13 +56,13 @@ const Service = () => {
    return (
       <section className="service">
          <div className="container">
-            <h2>
+            <h2 className="heading">
                Provide awesome <span>services</span>
             </h2>
             <div>
                <Slider {...settings}>
                   {data.map((d, i) => (
-                     <div className="" kye={i}>
+                     <div key={i}>
                         <img src={d.icon} alt=" " />
                         <h3>{d.name}</h3>
                         <p>{d.text}</p>
