@@ -4,11 +4,21 @@ import Slider from "react-slick";
 const Work = () => {
    const settings = {
       slidesToShow: 3,
+      slidesToScroll: 3,
       arrows: false,
       centerPadding: "0px",
       speed: 500,
       dots: true,
       responsive: [
+         {
+            breakpoint: 768,
+            settings: {
+               slidesToShow: 2,
+               slidesToScroll: 2,
+               dots: true,
+               initialSlide: 2,
+            },
+         },
          {
             breakpoint: 513,
             settings: {
