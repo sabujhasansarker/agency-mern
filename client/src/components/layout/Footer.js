@@ -69,6 +69,7 @@ const Footer = () => {
                </form>
             </div>
          </div>
+         <p className="text-center f-300">copyright Orange labs 2020</p>
       </footer>
    );
 };

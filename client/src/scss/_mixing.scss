@@ -17,6 +17,17 @@
    justify-content: $justify;
 }
 
+@each $text in (center, left, right) {
+   .text-#{$text} {
+      text-align: $text;
+   }
+}
+@for $i from 0 to 10 {
+   .f-#{$i*100} {
+      font-weight: #{$i * 100};
+   }
+}
+
 // Media query
 @mixin custom($screen) {
    @media only screen and (max-width: #{$screen}px) {

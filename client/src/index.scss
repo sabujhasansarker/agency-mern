@@ -234,6 +234,12 @@ footer {
          }
       }
    }
+   .f-300 {
+      margin-top: 120px;
+      font-size: 14px;
+      letter-spacing: 0.4px;
+      line-height: 24.5px;
+   }
 }
 
 // service
@@ -344,6 +350,43 @@ footer {
             color: black;
             margin: 0;
          }
+      }
+   }
+}
+
+// Login
+.login {
+   padding-top: 47px;
+   margin: 0;
+   img {
+      width: 150px;
+   }
+   &-content {
+      border: 1px solid black;
+      border-radius: 4px;
+      width: 350px;
+      margin: 0 auto;
+      padding: 100px 57px;
+      margin-top: 47px;
+      .google {
+         @include flex(center, flex-start);
+         border: 1px solid;
+         border-radius: 50px;
+         margin-top: 32px;
+         margin-bottom: 15px;
+         padding: 10px;
+         cursor: pointer;
+         img {
+            width: 30px;
+         }
+         p {
+            margin-left: 10px;
+            width: 100%;
+         }
+      }
+      a {
+         color: #75aefd;
+         text-decoration: underline;
       }
    }
 }

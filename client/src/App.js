@@ -15,8 +15,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Home from "./components/pages/Home";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
+import Login from "./components/pages/Login";
 
-const App = ({ getOrders, getServices, orders }) => {
+const App = ({ getOrders, getServices, orders, services }) => {
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
    const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
    useEffect(() => {
@@ -25,17 +26,19 @@ const App = ({ getOrders, getServices, orders }) => {
    }, [loading]);
    return (
       <Router>
-         <Navbar />
+         {/* <Navbar /> */}
          <Switch>
-            <Route exact to="/" component={Home} />
+            {/* <Route exact path="/" component={Home} /> */}
+            <Route exact path="/login" component={Login} />
          </Switch>
-         <Footer />
+         {/* <Footer /> */}
       </Router>
    );
 };
 
 const mapStateToProps = (state) => ({
    orders: state.order.orders,
+   services: state.service.services,
 });
 
 export default connect(mapStateToProps, { getOrders, getServices })(App);
