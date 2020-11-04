@@ -13,7 +13,9 @@ const Login = ({ googleLogin }) => {
    return (
       <div className="login text-center">
          <div className="container">
-            <img src={logo} alt="" />
+            <Link to="/">
+               <img src={logo} alt="" />
+            </Link>
             <div className="login-content">
                <h2>Login With</h2>
                <div className="google" onClick={() => googleLogin()}>

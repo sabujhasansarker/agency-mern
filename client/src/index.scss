@@ -356,7 +356,7 @@ footer {
 
 // Login
 .login {
-   padding-top: 47px;
+   padding: 47px 0;
    margin: 0;
    img {
       width: 150px;
@@ -368,6 +368,16 @@ footer {
       margin: 0 auto;
       padding: 100px 57px;
       margin-top: 47px;
+      @include custom(519) {
+         width: 90%;
+         box-sizing: border-box;
+      }
+      @include custom(410) {
+         padding: 100px 20px;
+      }
+      @include custom(323) {
+         padding: 100px 10px;
+      }
       .google {
          @include flex(center, flex-start);
          border: 1px solid;
@@ -387,6 +397,59 @@ footer {
       a {
          color: #75aefd;
          text-decoration: underline;
+      }
+   }
+}
+
+// Admin
+.admin {
+   background: #e5e5e5;
+   height: 100vh;
+   &-nav {
+      box-sizing: border-box;
+      &-top {
+         @include flex(center, space-between);
+         position: fixed;
+         width: 100%;
+         box-sizing: border-box;
+         background: white;
+         padding: 20px 60px;
+         &-left {
+            display: flex;
+            align-items: center;
+            h2 {
+               margin-left: 130px;
+               font-size: 22px;
+            }
+         }
+      }
+      &-left {
+         height: 100vh;
+         position: fixed;
+         box-sizing: border-box;
+         background: white;
+         padding: 20px 60px;
+         padding-top: 70px;
+         top: 80px;
+      }
+      ul {
+         list-style: none;
+         margin: 0;
+         padding: 0;
+         .active {
+            color: #009444;
+         }
+         li {
+            margin-bottom: 27px;
+            box-sizing: border-box;
+            a {
+               @include flex(center, unset);
+            }
+            div {
+               margin-right: 10px;
+               width: 30px;
+            }
+         }
       }
    }
 }
