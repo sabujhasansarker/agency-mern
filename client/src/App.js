@@ -1,7 +1,8 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect } from "react";
 // Redux
 import { connect } from "react-redux";
 import { getOrders } from "./action/order";
+import { getServices } from "./action/service";
 // GraphQL
 import { GET_ORDERS_QUERY } from "./graphQl/order";
 import { GET_SERVICES } from "./graphQl/service";
@@ -15,13 +16,13 @@ import Home from "./components/pages/Home";
 import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 
-const App = ({ getOrders, orders }) => {
-   const { loading, data } = useQuery(GET_ORDERS_QUERY);
-   const { data: services } = useQuery(GET_SERVICES);
+const App = ({ getOrders, getServices, orders }) => {
+   const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
+   const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
    useEffect(() => {
-      data && getOrders(data && data.getOrders);
+      ordersQuery && getOrders(ordersQuery && ordersQuery.getOrders);
+      servicesQuery && getServices(servicesQuery && servicesQuery.getServices);
    }, [loading]);
-   console.log(services);
    return (
       <Router>
          <Navbar />
@@ -37,4 +38,4 @@ const mapStateToProps = (state) => ({
    orders: state.order.orders,
 });
 
-export default connect(mapStateToProps, { getOrders })(App);
+export default connect(mapStateToProps, { getOrders, getServices })(App);
