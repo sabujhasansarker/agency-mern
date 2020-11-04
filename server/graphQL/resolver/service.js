@@ -34,7 +34,7 @@ module.exports = {
       },
    },
    Mutation: {
-      async addService(_, { title, icon, admin }) {
+      async addService(_, { title, icon, admin, dec }) {
          try {
             const findService = await Service.find({ icon });
             if (findService) {
@@ -42,6 +42,7 @@ module.exports = {
                   title,
                   icon,
                   admin,
+                  dec,
                });
                await newService.save();
                const service = await Service.findById(newService)
