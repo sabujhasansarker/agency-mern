@@ -402,7 +402,7 @@ footer {
 }
 
 .admin {
-   background: #e5e5e5;
+   background: #f4f7fc;
    height: 100%;
    &-nav {
       box-sizing: border-box;
@@ -541,7 +541,6 @@ footer {
       width: 75%;
       border-radius: 20px;
       padding: 35px;
-      transition: 1s all;
       margin-bottom: 2rem !important;
       @include custom(1216) {
          padding-left: 60px;
@@ -585,6 +584,21 @@ footer {
             font-weight: 500;
             line-height: 24px;
             margin-bottom: 0.5rem;
+         }
+         input[type="submit"] {
+            background: #009444;
+            border-radius: 5px;
+            width: 150px;
+            box-sizing: border-box;
+            padding: 0;
+            color: white;
+            cursor: pointer;
+            &:hover {
+               background: darken(#009444, 10%);
+            }
+            @include custom(600) {
+               margin-top: 1rem;
+            }
          }
          input {
             height: 40px;
