@@ -689,3 +689,25 @@ footer {
       }
    }
 }
+
+.admin .client {
+   input[type="submit"] {
+      background: #111430;
+      &:hover {
+         background: darken(#111430, 10%);
+      }
+   }
+   input {
+      height: 50px;
+      background: #ffffff;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+      box-sizing: border-box;
+      border-radius: 4px;
+   }
+   .admin-content {
+      background: unset;
+   }
+   label.image {
+      height: 50px;
+   }
+}
