@@ -17,6 +17,7 @@ import Navbar from "./components/layout/Navbar";
 import Footer from "./components/layout/Footer";
 import Login from "./components/pages/Login";
 import AddService from "./components/pages/AddService";
+import MakeAdmin from "./components/pages/MakeAdmin";
 
 const App = ({ getOrders, getServices, orders, services }) => {
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
@@ -32,6 +33,7 @@ const App = ({ getOrders, getServices, orders, services }) => {
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
             <Route exact path="/add-service" component={AddService} />
+            <Route exact path="/make-admin" component={MakeAdmin} />
          </Switch>
          {/* <Footer /> */}
       </Router>

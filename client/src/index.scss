@@ -452,4 +452,63 @@ footer {
          }
       }
    }
+   &-content {
+      position: relative;
+      left: 18rem;
+      top: 7rem;
+      background: white;
+      box-sizing: border-box;
+      width: 75%;
+      border-radius: 20px;
+      padding: 35px;
+      .form {
+         .flex {
+            @include flex(flex-end, space-between);
+            width: 68%;
+         }
+         &-group {
+            margin-bottom: 1.5rem;
+         }
+         label {
+            display: block;
+            font-weight: 500;
+            line-height: 24px;
+            margin-bottom: 0.5rem;
+         }
+         input {
+            height: 40px;
+         }
+         input#image {
+            display: none;
+         }
+         .image {
+            @include flex(center, unset);
+            height: 40px;
+            background: #deffed;
+            border: 1px solid #009444;
+            box-sizing: border-box;
+            border-radius: 5px;
+            color: #009444;
+            padding: 15px;
+            margin-bottom: 0rem;
+         }
+         input,
+         textarea {
+            background: #ffffff;
+            border: 0.666667px solid #c9c9c9;
+            padding-left: 10px;
+            resize: none;
+            box-sizing: border-box;
+            border-radius: 3.33333px;
+            width: 450px;
+            &:focus {
+               outline: none;
+            }
+         }
+         textarea {
+            height: 121px;
+            padding: 10px;
+         }
+      }
+   }
 }

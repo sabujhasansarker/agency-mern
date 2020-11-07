@@ -5,15 +5,24 @@ import { Link } from "react-router-dom";
 import logo from "../../images/logo.png";
 import serviceList from "../../images/service-list.png";
 import addService from "../../images/add-service.png";
+import addServiceActive from "../../images/add-service-active.png";
+import admin from "../../images/admin.png";
 import adminActive from "../../images/admin-active.png";
+import AddService from "../pages/AddService";
 
-const AdminNav = () => {
+const AdminNav = ({ active }) => {
    return (
       <div className="admin-nav">
          <div className="admin-nav-top">
             <div className="admin-nav-top-left">
                <img src={logo} alt="" />
-               <h2 className="f-500">Add Services</h2>
+               <h2 className="f-500">
+                  {active === "make-admin"
+                     ? "Add Admin"
+                     : active === "add-service"
+                     ? "Add Service"
+                     : "Service List"}
+               </h2>
             </div>
             <h4 className="f-500">Sufi Ahmed</h4>
          </div>
@@ -28,17 +37,33 @@ const AdminNav = () => {
                   </Link>
                </li>
                <li>
-                  <Link to="/services">
+                  <Link
+                     to="/add-service"
+                     className={`${active === "add-service" ? "active" : ""}`}
+                  >
                      <div className="image-container">
-                        <img src={addService} alt="" />
+                        <img
+                           src={
+                              active === "add-service"
+                                 ? addServiceActive
+                                 : addService
+                           }
+                           alt=""
+                        />
                      </div>{" "}
                      Add Service
                   </Link>
                </li>
                <li>
-                  <Link to="/services" className="active">
+                  <Link
+                     to="/make-admin"
+                     className={`${active === "make-admin" ? "active" : ""}`}
+                  >
                      <div className="image-container">
-                        <img src={adminActive} alt="" />
+                        <img
+                           src={active === "make-admin" ? adminActive : admin}
+                           alt=""
+                        />
                      </div>{" "}
                      Make Admin
                   </Link>
