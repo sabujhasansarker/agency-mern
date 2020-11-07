@@ -20,6 +20,7 @@ import AddService from "./components/pages/AddService";
 import MakeAdmin from "./components/pages/MakeAdmin";
 import ServiceList from "./components/pages/ServiceList";
 import AddOrder from "./components/pages/AddOrder";
+import Review from "./components/pages/Review";
 
 const App = ({ getOrders, getServices, orders, services }) => {
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
@@ -38,6 +39,7 @@ const App = ({ getOrders, getServices, orders, services }) => {
             <Route exact path="/make-admin" component={MakeAdmin} />
             <Route exact path="/services" component={ServiceList} />
             <Route exact path="/add-order" component={AddOrder} />
+            <Route exact path="/review" component={Review} />
          </Switch>
          {/* <Footer /> */}
       </Router>
