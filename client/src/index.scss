@@ -710,4 +710,67 @@ footer {
    label.image {
       height: 50px;
    }
+   .orders {
+      @include custom(567) {
+         width: 90%;
+         margin: 0 auto;
+      }
+      .single-order {
+         width: 45%;
+         float: left;
+         background: #ffffff;
+         border-radius: 20px;
+         padding: 24px;
+         box-sizing: border-box;
+         margin: 20px;
+         @include custom(580) {
+            width: 46%;
+            margin: 2%;
+         }
+         @include custom(567) {
+            width: 100%;
+            margin: 20px 0;
+         }
+         &-top {
+            @include flex(center, space-between);
+            img {
+               width: 75px;
+            }
+            .button {
+               border-radius: 5px;
+               padding: 10px 20px;
+            }
+            .pandding {
+               background: #ffe3e3;
+               color: #ff4545;
+            }
+            .done {
+               background: #c6ffe0;
+               color: #009444;
+            }
+         }
+         h2 {
+            font-size: 20px;
+            letter-spacing: 0.396px;
+            margin-top: 21px;
+            margin-bottom: 16px;
+         }
+         p {
+            line-height: 28px;
+            letter-spacing: 0.396px;
+            color: rgba(0, 0, 0, 0.7);
+         }
+      }
+   }
+}
+
+.order-list {
+   .admin-content {
+      @include custom(950) {
+         padding-left: 0;
+         padding-right: 0;
+         left: 0;
+         width: 100%;
+      }
+   }
 }
