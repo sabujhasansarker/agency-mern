@@ -5,7 +5,7 @@ import upload from "../../images/upload.png";
 const AddService = () => {
    return (
       <div className="admin">
-         <AdminNav active="add-service" />
+         <AdminNav active="Add Service" />
          <div className="add-service admin-content">
             <form className="form">
                <div className="form-group flex">

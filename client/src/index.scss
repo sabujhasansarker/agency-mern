@@ -559,6 +559,45 @@ footer {
       @include custom(310) {
          top: 10rem;
       }
+      table {
+         width: 100%;
+         border: 0;
+         border-spacing: 0;
+         @include custom(630) {
+            overflow-x: auto;
+            display: block;
+            width: 100%;
+         }
+         thead {
+            background: #f5f6fa;
+            padding: 10px;
+            th {
+               padding: 10px;
+               text-align: left;
+               padding-left: 20px;
+               &:first-child {
+                  border-radius: 13px 0 0 13px;
+               }
+               &:last-child {
+                  border-radius: 0px 13px 13px 0px;
+               }
+            }
+         }
+         td {
+            padding-left: 20px;
+            padding-top: 20px;
+            select {
+               border: none;
+               background: none;
+               font-size: 16px;
+               line-height: 24px;
+               &:focus {
+                  outline: none;
+               }
+            }
+         }
+      }
+
       .form {
          .flex {
             @include flex(flex-end, space-between);

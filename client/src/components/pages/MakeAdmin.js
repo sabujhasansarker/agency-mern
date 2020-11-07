@@ -4,7 +4,7 @@ import AdminNav from "../template/AdminNav";
 const MakeAdmin = () => {
    return (
       <div className="make-admin admin">
-         <AdminNav active="make-admin" />
+         <AdminNav active="Make Admin" />
          <div className="admin-content">
             <form action="" className="form">
                <div className="form-group flex">
