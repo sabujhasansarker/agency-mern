@@ -17,7 +17,7 @@ const AdminNav = ({ active }) => {
       open.current = !open.current;
       setOpenNav(!openNav);
    };
-
+   document.body.classList.add("admin");
    !open.current
       ? document.body.classList.add("close-admin")
       : document.body.classList.remove("close-admin");

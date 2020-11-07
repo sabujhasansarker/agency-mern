@@ -401,15 +401,6 @@ footer {
    }
 }
 
-@include custom(1216) {
-   // Admin
-   body.close-admin {
-      // .admin-content {
-      //    left: 2rem;
-      //    width: 94%;
-      // }
-   }
-}
 .admin {
    background: #e5e5e5;
    height: 100%;
@@ -551,6 +542,7 @@ footer {
       border-radius: 20px;
       padding: 35px;
       transition: 1s all;
+      margin-bottom: 2rem !important;
       @include custom(1216) {
          padding-left: 60px;
          left: 2rem;
