@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef, useState } from "react";
 
 import { Link } from "react-router-dom";
 
@@ -11,11 +11,25 @@ import adminActive from "../../images/admin-active.png";
 import AddService from "../pages/AddService";
 
 const AdminNav = ({ active }) => {
+   const open = useRef(false);
+   const [openNav, setOpenNav] = useState(false);
+   const onClick = () => {
+      open.current = !open.current;
+      setOpenNav(!openNav);
+   };
+
+   !open.current
+      ? document.body.classList.add("close-admin")
+      : document.body.classList.remove("close-admin");
    return (
       <div className="admin-nav">
-         <div className="admin-nav-top">
+         <div className={`admin-nav-top ${openNav ? "adminNavHaderLeft" : ""}`}>
             <div className="admin-nav-top-left">
-               <img src={logo} alt="" />
+               <div onClick={() => onClick()} className="responsive">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+               </div>
                <h2 className="f-500">
                   {active === "make-admin"
                      ? "Add Admin"
@@ -26,7 +40,8 @@ const AdminNav = ({ active }) => {
             </div>
             <h4 className="f-500">Sufi Ahmed</h4>
          </div>
-         <div className="admin-nav-left">
+         <div className={`admin-nav-left ${openNav ? "openSideNav" : ""}`}>
+            <img src={logo} alt="" className="logo" />
             <ul>
                <li>
                   <Link to="/services">

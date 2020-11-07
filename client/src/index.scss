@@ -401,12 +401,72 @@ footer {
    }
 }
 
-// Admin
+@include custom(1216) {
+   // Admin
+   body.close-admin {
+      // .admin-content {
+      //    left: 2rem;
+      //    width: 94%;
+      // }
+   }
+}
 .admin {
    background: #e5e5e5;
-   height: 100vh;
+   height: 100%;
    &-nav {
       box-sizing: border-box;
+
+      // Resposive
+      .responsive {
+         display: none;
+         span {
+            transition: 0.5s all;
+            display: block;
+            width: 30px;
+            height: 3px;
+            margin-top: 0.4rem;
+            background: lighten($buttonColor, 10%);
+            &:last-child {
+               height: 3.5px;
+            }
+            @include custom(310) {
+               margin: 0 auto;
+               margin-top: 0.4rem;
+            }
+         }
+         @include custom(310) {
+            // margin: 5px 0;
+            order: 2;
+         }
+      }
+      @include custom(1216) {
+         .responsive {
+            display: block;
+         }
+         .openSideNav {
+            left: 0;
+         }
+         .adminNavHaderLeft {
+            padding-left: 284px;
+         }
+      }
+      @include custom(650) {
+         .adminNavHaderLeft {
+            width: 184%;
+         }
+      }
+      @include custom(310) {
+         .adminNavHaderLeft {
+            width: 100%;
+            padding: 20px;
+         }
+         .responsive {
+            float: right;
+         }
+         .admin-nav-left {
+            padding: 20px 10px;
+         }
+      }
       &-top {
          @include flex(center, space-between);
          position: fixed;
@@ -414,12 +474,33 @@ footer {
          box-sizing: border-box;
          background: white;
          padding: 20px 60px;
+         z-index: 999;
+         transition: 1s all;
+         padding-left: 270px;
+         @include custom(1216) {
+            padding-left: 60px;
+         }
+         @include custom(410) {
+            padding: 20px;
+         }
+         @include custom(310) {
+            display: block;
+            text-align: center;
+         }
          &-left {
             display: flex;
             align-items: center;
+            justify-content: space-between;
             h2 {
-               margin-left: 130px;
+               margin-left: 20px;
                font-size: 22px;
+               @include custom(410) {
+                  font-size: 20px;
+               }
+               @include custom(310) {
+                  margin: 5px 0;
+                  order: 1;
+               }
             }
          }
       }
@@ -429,13 +510,21 @@ footer {
          box-sizing: border-box;
          background: white;
          padding: 20px 60px;
-         padding-top: 70px;
-         top: 80px;
+         top: 0px;
+         z-index: 9999;
+         @include custom(1216) {
+            left: -100%;
+            transition: 1s all;
+         }
+         @include custom(330) {
+            padding: 20px 30px;
+         }
       }
       ul {
          list-style: none;
          margin: 0;
          padding: 0;
+         margin-top: 5rem;
          .active {
             color: #009444;
          }
@@ -461,10 +550,40 @@ footer {
       width: 75%;
       border-radius: 20px;
       padding: 35px;
+      transition: 1s all;
+      @include custom(1216) {
+         padding-left: 60px;
+         left: 2rem;
+         width: 94%;
+      }
+      @include custom(765) {
+         padding-left: 35px;
+      }
+      @include custom(745) {
+         padding: 35px 15px;
+         left: 0;
+         width: 90%;
+         margin: 0 auto;
+      }
+      @include custom(310) {
+         top: 10rem;
+      }
       .form {
          .flex {
             @include flex(flex-end, space-between);
             width: 68%;
+            @include custom(1335) {
+               width: 80%;
+            }
+            @include custom(1156) {
+               width: 90%;
+            }
+            @include custom(855) {
+               width: 100%;
+            }
+            @include custom(600) {
+               display: block;
+            }
          }
          &-group {
             margin-bottom: 1.5rem;
@@ -491,6 +610,13 @@ footer {
             color: #009444;
             padding: 15px;
             margin-bottom: 0rem;
+            @include custom(600) {
+               margin-top: 1.5rem;
+               width: 205px;
+            }
+            @include custom(276) {
+               width: 100%;
+            }
          }
          input,
          textarea {
@@ -501,6 +627,12 @@ footer {
             box-sizing: border-box;
             border-radius: 3.33333px;
             width: 450px;
+            @include custom(700) {
+               width: 300px;
+            }
+            @include custom(600) {
+               width: 100%;
+            }
             &:focus {
                outline: none;
             }
