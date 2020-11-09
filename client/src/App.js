@@ -13,6 +13,7 @@ import { useQuery } from "@apollo/react-hooks";
 
 /// Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import PrivateRoute from "./components/layout/PrivateRoute";
 
 /// Components
 import Home from "./components/pages/Home";
@@ -38,12 +39,12 @@ const App = ({ getOrders, getServices, orders, services, getUser, auth }) => {
          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
-            <Route exact path="/add-service" component={AddService} />
-            <Route exact path="/make-admin" component={MakeAdmin} />
-            <Route exact path="/services" component={ServiceList} />
-            <Route exact path="/add-order" component={AddOrder} />
-            <Route exact path="/review" component={Review} />
-            <Route exact path="/order-list" component={OrderList} />
+            <PrivateRoute exact path="/add-service" component={AddService} />
+            <PrivateRoute exact path="/make-admin" component={MakeAdmin} />
+            <PrivateRoute exact path="/services" component={ServiceList} />
+            <PrivateRoute exact path="/add-order" component={AddOrder} />
+            <PrivateRoute exact path="/review" component={Review} />
+            <PrivateRoute exact path="/order-list" component={OrderList} />
          </Switch>
       </Router>
    );

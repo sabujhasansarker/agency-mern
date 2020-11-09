@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 
 // redux
 import { connect } from "react-redux";
@@ -9,7 +9,15 @@ import { googleLogin } from "../../action/auth";
 import logo from "../../images/logo.png";
 import google from "../../images/googleLogin.png";
 
-const Login = ({ googleLogin }) => {
+const Login = ({ googleLogin, auth }) => {
+   /// Back and forward history
+   let history = useHistory();
+   let location = useLocation();
+   let { from } = location.state || { from: { pathname: "/" } };
+   if (auth) {
+      history.replace(from);
+   }
+
    return (
       <div className="login text-center">
          <div className="container">
@@ -32,4 +40,8 @@ const Login = ({ googleLogin }) => {
    );
 };
 
-export default connect(null, { googleLogin })(Login);
+const mapSateToProps = (state) => ({
+   auth: state.auth.auth,
+});
+
+export default connect(mapSateToProps, { googleLogin })(Login);
