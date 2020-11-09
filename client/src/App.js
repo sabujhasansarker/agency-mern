@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 
 /// Redux
 import { connect } from "react-redux";
@@ -25,6 +25,7 @@ import ServiceList from "./components/pages/ServiceList";
 import AddOrder from "./components/pages/AddOrder";
 import Review from "./components/pages/Review";
 import OrderList from "./components/pages/OrderList";
+import NotFound from "./components/layout/NotFound";
 
 const App = ({
    getOrders,
@@ -50,12 +51,34 @@ const App = ({
          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
-            <PrivateRoute exact path="/add-service" component={AddService} />
-            <PrivateRoute exact path="/make-admin" component={MakeAdmin} />
-            <PrivateRoute exact path="/services" component={ServiceList} />
+            {admins &&
+               admins.map(
+                  (admin, i) =>
+                     auth &&
+                     auth.email == admin.email && (
+                        <Fragment key={i}>
+                           <PrivateRoute
+                              exact
+                              path="/add-service"
+                              component={AddService}
+                           />
+                           <PrivateRoute
+                              exact
+                              path="/make-admin"
+                              component={MakeAdmin}
+                           />
+                           <PrivateRoute
+                              exact
+                              path="/services"
+                              component={ServiceList}
+                           />
+                        </Fragment>
+                     )
+               )}
             <PrivateRoute exact path="/add-order" component={AddOrder} />
             <PrivateRoute exact path="/review" component={Review} />
             <PrivateRoute exact path="/order-list" component={OrderList} />
+            <Route component={NotFound} />
          </Switch>
       </Router>
    );

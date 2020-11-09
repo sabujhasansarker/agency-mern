@@ -777,3 +777,25 @@ footer {
       }
    }
 }
+
+/// Not found
+.notfound {
+   position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
+   width: 100%;
+   h2 {
+      font-size: 4rem;
+      margin-bottom: 2rem;
+   }
+   a {
+      background: $bg;
+      padding: 10px 50px;
+      border-radius: 5px;
+      transition: 0.3s all;
+      &:hover {
+         background: darken($bg, 10%);
+      }
+   }
+}

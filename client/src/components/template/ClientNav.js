@@ -35,7 +35,9 @@ const ClientNav = ({ active }) => {
             <h4 className="f-500">Sufi Ahmed</h4>
          </div>
          <div className={`admin-nav-left ${openNav ? "openSideNav" : ""}`}>
-            <img src={logo} alt="" className="logo" />
+            <Link to="/">
+               <img src={logo} alt="" className="logo" />
+            </Link>
             <ul>
                <li>
                   <Link
