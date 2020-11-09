@@ -2,7 +2,10 @@ import React from "react";
 import Slider from "react-slick";
 import phn from "../../images/iphone.png";
 
-const Service = () => {
+/// Redux
+import { connect } from "react-redux";
+
+const Service = ({ services }) => {
    const settings = {
       slidesToShow: 3,
       centerMode: true,
@@ -54,7 +57,6 @@ const Service = () => {
          icon: phn,
       },
    ];
-
    return (
       <section className="service">
          <div className="container">
@@ -63,13 +65,14 @@ const Service = () => {
             </h2>
             <div>
                <Slider {...settings}>
-                  {data.map((d, i) => (
-                     <div key={i}>
-                        <img src={d.icon} alt=" " />
-                        <h3>{d.name}</h3>
-                        <p>{d.text}</p>
-                     </div>
-                  ))}
+                  {services &&
+                     services.map((d, i) => (
+                        <div key={i}>
+                           <img src={d.icon} alt=" " />
+                           <h3>{d.title}</h3>
+                           <p>{d.dec}</p>
+                        </div>
+                     ))}
                </Slider>
             </div>
          </div>
@@ -77,4 +80,8 @@ const Service = () => {
    );
 };
 
-export default Service;
+const mapStateToProps = (state) => ({
+   services: state.service.services,
+});
+
+export default connect(mapStateToProps, {})(Service);

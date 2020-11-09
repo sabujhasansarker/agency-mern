@@ -36,6 +36,5 @@ export const logOut = () => (dispatch) => {
 
 /// Get auth
 export const getAdmins = (auth) => (dispatch) => {
-   console.log(auth);
-   dispatch({ type: GET_ADMINS, payload: auth });
+   auth && dispatch({ type: GET_ADMINS, payload: auth });
 };

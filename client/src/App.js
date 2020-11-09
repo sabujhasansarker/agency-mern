@@ -38,8 +38,8 @@ const App = ({
    admins,
 }) => {
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
-   const { data: servicesQuery } = useQuery(GET_SERVICES);
-   const { loading, data: adminQuery } = useQuery(GET_ADMINS);
+   const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
+   const { data: adminQuery } = useQuery(GET_ADMINS);
    useEffect(() => {
       getOrders(ordersQuery && ordersQuery.getOrders);
       getServices(servicesQuery && servicesQuery.getServices);
