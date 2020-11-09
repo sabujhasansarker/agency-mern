@@ -4,10 +4,11 @@ import phn from "../../images/iphone.png";
 
 /// Redux
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 const Service = ({ services }) => {
    const settings = {
-      slidesToShow: 3,
+      slidesToShow: services.length < 3 ? services.length : 3,
       centerMode: true,
       arrows: false,
       centerPadding: "0px",
@@ -25,45 +26,28 @@ const Service = ({ services }) => {
          },
       ],
    };
-   const data = [
-      {
-         name: "Demo 1",
-         text:
-            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-         icon: phn,
-      },
-      {
-         name: "Demo 2",
-         text:
-            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-         icon: phn,
-      },
-      {
-         name: "Demo 3",
-         text:
-            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-         icon: phn,
-      },
-      {
-         name: "Demo 4",
-         text:
-            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-         icon: phn,
-      },
-      {
-         name: "Demo 5",
-         text:
-            "We craft stunning and amazing web UI, using a well drrafted UX to fit your product.",
-         icon: phn,
-      },
-   ];
+
    return (
       <section className="service">
          <div className="container">
             <h2 className="heading">
                Provide awesome <span>services</span>
             </h2>
-            <div>
+            {services && services.length === 1 && services ? (
+               services.map((d, i) => (
+                  <Link
+                     to={`/add-order/${d.id}`}
+                     className="single-container"
+                     key={i}
+                  >
+                     <div className="single-slider">
+                        <img src={d.icon} alt="" />
+                        <h3>{d.title}</h3>
+                        <p>{d.dec}</p>
+                     </div>
+                  </Link>
+               ))
+            ) : (
                <Slider {...settings}>
                   {services &&
                      services.map((d, i) => (
@@ -74,7 +58,7 @@ const Service = ({ services }) => {
                         </div>
                      ))}
                </Slider>
-            </div>
+            )}
          </div>
       </section>
    );

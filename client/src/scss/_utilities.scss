@@ -31,3 +31,7 @@ a {
       color: #7ab259;
    }
 }
+
+input:disabled {
+   cursor: not-allowed;
+}

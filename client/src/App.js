@@ -75,7 +75,11 @@ const App = ({
                         </Fragment>
                      )
                )}
-            <PrivateRoute exact path="/add-order" component={AddOrder} />
+            <PrivateRoute
+               exact
+               path={`/add-order/:order_id`}
+               component={AddOrder}
+            />
             <PrivateRoute exact path="/review" component={Review} />
             <PrivateRoute exact path="/order-list" component={OrderList} />
             <Route component={NotFound} />
