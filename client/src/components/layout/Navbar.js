@@ -1,9 +1,14 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, Fragment } from "react";
 import { Link } from "react-router-dom";
 
+/// Reducer
+import { connect } from "react-redux";
+import { logOut } from "../../action/auth";
+
+/// image
 import logo from "../../images/logo.png";
 
-const Navbar = () => {
+const Navbar = ({ auth, logOut }) => {
    const [scrollPosition, setScrollPosition] = useState(0);
    const toggle = useRef(false);
    const [toggleMenu, setToggleMenu] = useState(false);
@@ -49,11 +54,23 @@ const Navbar = () => {
                      <li>
                         <Link to="/">Contact Us</Link>
                      </li>
-                     <li>
-                        <Link to="/login" className="btn-primary">
-                           Login
-                        </Link>
-                     </li>
+                     {auth ? (
+                        <Fragment>
+                           <li>{auth.displayName}</li>
+                           <li
+                              className="btn-primary logout"
+                              onClick={() => logOut()}
+                           >
+                              Logout
+                           </li>
+                        </Fragment>
+                     ) : (
+                        <li>
+                           <Link to="/login" className="btn-primary">
+                              Login
+                           </Link>
+                        </li>
+                     )}
                   </ul>
                </div>
             </div>
@@ -62,4 +79,8 @@ const Navbar = () => {
    );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => ({
+   auth: state.auth.auth,
+});
+
+export default connect(mapStateToProps, { logOut })(Navbar);
