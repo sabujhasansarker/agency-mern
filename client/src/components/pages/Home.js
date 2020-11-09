@@ -1,5 +1,7 @@
 import React, { Fragment } from "react";
 import Banner from "../template/Banner";
+import NavBar from "../layout/Navbar";
+import Footer from "../layout/Footer";
 
 // images
 import slack from "../../images/slack.png";
@@ -21,6 +23,7 @@ const Home = () => {
    ];
    return (
       <Fragment>
+         <NavBar />
          <Banner />
          <section className="client">
             <div className="container">
@@ -34,6 +37,7 @@ const Home = () => {
          <Service />
          <Work />
          <FeedBack />
+         <Footer />
       </Fragment>
    );
 };

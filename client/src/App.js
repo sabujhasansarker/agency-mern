@@ -13,8 +13,6 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 // Components
 import Home from "./components/pages/Home";
-import Navbar from "./components/layout/Navbar";
-import Footer from "./components/layout/Footer";
 import Login from "./components/pages/Login";
 import AddService from "./components/pages/AddService";
 import MakeAdmin from "./components/pages/MakeAdmin";
@@ -32,7 +30,6 @@ const App = ({ getOrders, getServices, orders, services }) => {
    }, [loading]);
    return (
       <Router>
-         {/* <Navbar /> */}
          <Switch>
             <Route exact path="/" component={Home} />
             <Route exact path="/login" component={Login} />
@@ -43,7 +40,6 @@ const App = ({ getOrders, getServices, orders, services }) => {
             <Route exact path="/review" component={Review} />
             <Route exact path="/order-list" component={OrderList} />
          </Switch>
-         {/* <Footer /> */}
       </Router>
    );
 };
