@@ -1,4 +1,4 @@
-import { GET_USER, USER_ERROR } from "./type";
+import { GET_USER, USER_ERROR, GET_ADMINS } from "./type";
 import { google, auth } from "../firebase";
 
 /// Get user
@@ -26,10 +26,16 @@ export const googleLogin = () => async (dispatch) => {
 };
 
 /// Logout user
-export const logOut = () => async (dispatch) => {
+export const logOut = () => (dispatch) => {
    auth.signOut();
    dispatch({
       type: GET_USER,
       payload: null,
    });
+};
+
+/// Get auth
+export const getAdmins = (auth) => (dispatch) => {
+   console.log(auth);
+   dispatch({ type: GET_ADMINS, payload: auth });
 };

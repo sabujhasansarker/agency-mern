@@ -4,12 +4,13 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import { getOrders } from "./action/order";
 import { getServices } from "./action/service";
-import { getUser } from "./action/auth";
+import { getUser, getAdmins } from "./action/auth";
 
 /// GraphQL
+import { useQuery } from "@apollo/react-hooks";
 import { GET_ORDERS_QUERY } from "./graphQl/order";
 import { GET_SERVICES } from "./graphQl/service";
-import { useQuery } from "@apollo/react-hooks";
+import { GET_ADMINS } from "./graphQl/auth";
 
 /// Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -25,15 +26,25 @@ import AddOrder from "./components/pages/AddOrder";
 import Review from "./components/pages/Review";
 import OrderList from "./components/pages/OrderList";
 
-const App = ({ getOrders, getServices, orders, services, getUser, auth }) => {
+const App = ({
+   getOrders,
+   getServices,
+   orders,
+   services,
+   getUser,
+   auth,
+   getAdmins,
+   admins,
+}) => {
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
-   const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
+   const { data: servicesQuery } = useQuery(GET_SERVICES);
+   const { loading, data: adminQuery } = useQuery(GET_ADMINS);
    useEffect(() => {
-      ordersQuery && getOrders(ordersQuery && ordersQuery.getOrders);
-      servicesQuery && getServices(servicesQuery && servicesQuery.getServices);
+      getOrders(ordersQuery && ordersQuery.getOrders);
+      getServices(servicesQuery && servicesQuery.getServices);
+      getAdmins(adminQuery && adminQuery.getAdmins);
       !auth && getUser();
    }, [loading]);
-
    return (
       <Router>
          <Switch>
@@ -54,8 +65,12 @@ const mapStateToProps = (state) => ({
    orders: state.order.orders,
    services: state.service.services,
    auth: state.auth.auth,
+   admins: state.auth.admins,
 });
 
-export default connect(mapStateToProps, { getOrders, getServices, getUser })(
-   App
-);
+export default connect(mapStateToProps, {
+   getOrders,
+   getServices,
+   getUser,
+   getAdmins,
+})(App);

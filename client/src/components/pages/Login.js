@@ -17,7 +17,6 @@ const Login = ({ googleLogin, auth }) => {
    if (auth) {
       history.replace(from);
    }
-
    return (
       <div className="login text-center">
          <div className="container">
