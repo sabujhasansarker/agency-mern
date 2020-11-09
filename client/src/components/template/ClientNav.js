@@ -10,7 +10,10 @@ import orderActive from "../../images/order-active.png";
 import review from "../../images/review.png";
 import reviewActive from "../../images/review-active.png";
 
-const ClientNav = ({ active }) => {
+/// redux
+import { connect } from "react-redux";
+
+const ClientNav = ({ active, auth: { displayName } }) => {
    const open = useRef(false);
    const [openNav, setOpenNav] = useState(false);
    const onClick = () => {
@@ -32,7 +35,7 @@ const ClientNav = ({ active }) => {
                </div>
                <h2 className="f-500">{active}</h2>
             </div>
-            <h4 className="f-500">Sufi Ahmed</h4>
+            <h4 className="f-500">{displayName}</h4>
          </div>
          <div className={`admin-nav-left ${openNav ? "openSideNav" : ""}`}>
             <Link to="/">
@@ -116,4 +119,8 @@ const ClientNav = ({ active }) => {
    );
 };
 
-export default ClientNav;
+const mapStateToProps = (state) => ({
+   auth: state.auth.auth,
+});
+
+export default connect(mapStateToProps, {})(ClientNav);

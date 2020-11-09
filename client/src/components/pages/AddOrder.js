@@ -53,7 +53,8 @@ const AddOrder = ({
                      <input
                         type="text"
                         placeholder="Graphic Design"
-                        value={service && service.title}
+                        value={service ? service.title : ""}
+                        disabled
                      />
                   </div>
                </div>

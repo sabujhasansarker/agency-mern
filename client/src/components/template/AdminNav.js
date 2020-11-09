@@ -10,7 +10,10 @@ import addServiceActive from "../../images/add-service-active.png";
 import admin from "../../images/admin.png";
 import adminActive from "../../images/admin-active.png";
 
-const AdminNav = ({ active }) => {
+/// redux
+import { connect } from "react-redux";
+
+const AdminNav = ({ active, auth: { displayName } }) => {
    const open = useRef(false);
    const [openNav, setOpenNav] = useState(false);
    const onClick = () => {
@@ -32,7 +35,7 @@ const AdminNav = ({ active }) => {
                </div>
                <h2 className="f-500">{active}</h2>
             </div>
-            <h4 className="f-500">Sufi Ahmed</h4>
+            <h4 className="f-500">{displayName}</h4>
          </div>
          <div className={`admin-nav-left ${openNav ? "openSideNav" : ""}`}>
             <Link to="/">
@@ -117,4 +120,8 @@ const AdminNav = ({ active }) => {
    );
 };
 
-export default AdminNav;
+const mapStateToProps = (state) => ({
+   auth: state.auth.auth,
+});
+
+export default connect(mapStateToProps, {})(AdminNav);
