@@ -18,7 +18,6 @@ const AddOrder = ({
    service,
    match,
    getService,
-   orders,
 }) => {
    /// Service id find
    const serviceId = match.params.serviceId;
@@ -58,19 +57,30 @@ const AddOrder = ({
    };
 
    /// Add order
-   const [addOrder, { error, data: order }] = useMutation(ADD_ORDER);
+   const [AddOrder, {}] = useMutation(ADD_ORDER);
 
    /// Onchnage
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
 
+   /// clear alert
+   const clearAlert = () => {
+      setTimeout(() => {
+         setAlert(null);
+      }, 2000);
+   };
+
    /// On submite
    const onSubmit = (e) => {
       e.preventDefault();
-      if ((!file, details === "", price === "")) {
-         setAlert("All filed are required ***");
+      if (!file || details === "" || price === "") {
+         setAlert({ msg: "All filed are required ***", error: true });
+         clearAlert();
+      } else if (formData.price < 1) {
+         setAlert({ msg: "please set minimum price for order", error: true });
          clearAlert();
       } else {
+         console.log("not ok");
          storage
             .ref()
             .child(`/orders/${file.name}`)
@@ -83,20 +93,20 @@ const AddOrder = ({
                setComplete(complete + 1);
                setTimeout(() => {
                   setComplete(complete + 1);
+                  setFormData({
+                     name: displayName,
+                     email,
+                     details: "",
+                     price: "",
+                  });
                }, 1000);
             });
       }
    };
-   /// clear alert
-   const clearAlert = () => {
-      setTimeout(() => {
-         setAlert(null);
-      }, 2000);
-   };
-   if (formData.file && complete === 1) {
-      setFormData({ name: displayName, email, details: "", price: "" });
 
-      addOrder({
+   /// Add order
+   if (formData.file && complete === 1) {
+      AddOrder({
          variables: {
             name: formData.name,
             email: formData.email,
@@ -107,12 +117,25 @@ const AddOrder = ({
             serviceId: serviceId,
          },
       });
+
+      /// Alert
+      setAlert({ msg: "Your order completed ***", error: false });
+      clearAlert();
    }
+
    return (
       <div className="admin client">
          <ClientNav active="Add Order" />
          <div className="admin-content">
-            {alert && <p className="alert text-center">{alert}</p>}
+            {alert && (
+               <p
+                  className={`alert text-center ${
+                     alert.error ? "alert-error" : ""
+                  }`}
+               >
+                  {alert.msg}
+               </p>
+            )}
             <form className="form" onSubmit={(e) => onSubmit(e)}>
                <div className="form-group">
                   <div className="form-item">

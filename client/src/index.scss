@@ -812,7 +812,12 @@ footer {
 /// Alert
 p.alert.text-center {
    padding: 10px;
-   background: red;
    margin-bottom: 3rem;
-   color: white;
+   background: lawngreen;
+   color: black;
+   border-radius: 5px;
+}
+.alert-error {
+   background: red !important;
+   color: white !important;
 }

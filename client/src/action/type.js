@@ -5,3 +5,6 @@ export const GET_SERVICE = "GET_SERVICE";
 export const GET_USER = "GET_USER";
 export const USER_ERROR = "USER_ERROR";
 export const GET_ADMINS = "GET_ADMINS";
+
+/// ADD order
+export const ADD_ORDER = "ADD_ORDER";
