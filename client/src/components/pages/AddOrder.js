@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import ClientNav from "../template/ClientNav";
 import upload from "../../images/upload.png";
 
@@ -7,27 +7,113 @@ import { connect } from "react-redux";
 import { getService } from "../../action/service";
 
 /// GraphQl
-import { useQuery } from "@apollo/react-hooks";
+import { useQuery, useMutation } from "@apollo/react-hooks";
 import { GET_SERVICE } from "../../graphQl/service";
+import { ADD_ORDER } from "../../graphQl/order";
 
+/// firebase
+import { storage } from "../../firebase";
 const AddOrder = ({
    auth: { displayName, email },
    service,
    match,
    getService,
+   orders,
 }) => {
-   const serviceId = match.params.order_id;
+   /// Service id find
+   const serviceId = match.params.serviceId;
+
+   /// services query
    const { data } = useQuery(GET_SERVICE, {
       variables: { serviceId },
    });
+
+   /// data pass on redux
    if (data) {
       getService(data && data.getService);
+   }
+
+   /// form data define
+   const [formData, setFormData] = useState({
+      name: displayName,
+      email,
+      details: "",
+      price: "",
+   });
+   const { details, price } = formData;
+   const [alert, setAlert] = useState(null);
+   const [file, setFile] = useState(null);
+   const [complete, setComplete] = useState(1);
+
+   /// file change
+   const fileChange = (e) => {
+      const reader = new FileReader();
+      const fileName = e.target.files[0];
+      reader.readAsDataURL(fileName);
+      if (fileName) {
+         reader.onloadend = (e) => {
+            setFile(fileName);
+         };
+      }
+   };
+
+   /// Add order
+   const [addOrder, { error, data: order }] = useMutation(ADD_ORDER);
+
+   /// Onchnage
+   const onChange = (e) =>
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+
+   /// On submite
+   const onSubmit = (e) => {
+      e.preventDefault();
+      if ((!file, details === "", price === "")) {
+         setAlert("All filed are required ***");
+         clearAlert();
+      } else {
+         storage
+            .ref()
+            .child(`/orders/${file.name}`)
+            .put(file)
+            .on("state_changed", async (snap) => {
+               let d = await storage
+                  .ref(`/orders/${file.name}`)
+                  .getDownloadURL();
+               setFormData({ ...formData, file: d });
+               setComplete(complete + 1);
+               setTimeout(() => {
+                  setComplete(complete + 1);
+               }, 1000);
+            });
+      }
+   };
+   /// clear alert
+   const clearAlert = () => {
+      setTimeout(() => {
+         setAlert(null);
+      }, 2000);
+   };
+   if (formData.file && complete === 1) {
+      setFormData({ name: displayName, email, details: "", price: "" });
+
+      addOrder({
+         variables: {
+            name: formData.name,
+            email: formData.email,
+            details: formData.details,
+            price: formData.price,
+            process: true,
+            file: formData.file,
+            serviceId: serviceId,
+         },
+      });
    }
    return (
       <div className="admin client">
          <ClientNav active="Add Order" />
          <div className="admin-content">
-            <form className="form">
+            {alert && <p className="alert text-center">{alert}</p>}
+            <form className="form" onSubmit={(e) => onSubmit(e)}>
                <div className="form-group">
                   <div className="form-item">
                      <input
@@ -60,12 +146,23 @@ const AddOrder = ({
                </div>
                <div className="form-group">
                   <div className="form-item">
-                     <textarea placeholder="Project Details" />
+                     <textarea
+                        placeholder="Project Details"
+                        name="details"
+                        value={details}
+                        onChange={(e) => onChange(e)}
+                     />
                   </div>
                </div>
                <div className="form-group flex">
                   <div className="form-item">
-                     <input type="text" placeholder="Price" />
+                     <input
+                        type="number"
+                        placeholder="Price"
+                        name="price"
+                        value={price}
+                        onChange={(e) => onChange(e)}
+                     />
                   </div>
                   <div className="form-item">
                      <label htmlFor="image" className="image">
@@ -76,7 +173,12 @@ const AddOrder = ({
                         />{" "}
                         <p> Upload project file</p>
                      </label>
-                     <input type="file" name="image" id="image" />
+                     <input
+                        type="file"
+                        name="image"
+                        id="image"
+                        onChange={(e) => fileChange(e)}
+                     />
                   </div>
                </div>
                <div className="form-group">
@@ -92,5 +194,6 @@ const AddOrder = ({
 const mapStateToProps = (state) => ({
    auth: state.auth.auth,
    service: state.service.service,
+   orders: state.order.orders,
 });
 export default connect(mapStateToProps, { getService })(AddOrder);

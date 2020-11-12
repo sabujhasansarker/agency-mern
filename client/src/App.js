@@ -77,7 +77,7 @@ const App = ({
                )}
             <PrivateRoute
                exact
-               path={`/add-order/:order_id`}
+               path={`/add-order/:serviceId`}
                component={AddOrder}
             />
             <PrivateRoute exact path="/review" component={Review} />

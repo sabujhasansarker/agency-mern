@@ -44,7 +44,7 @@ module.exports = gql`
          details: String!
          price: String!
          process: Boolean!
-         file: String
+         file: String!
          serviceId: ID!
       ): Order
       updateOrder(process: Boolean, orderId: ID!): Order
