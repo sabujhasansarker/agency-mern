@@ -5,12 +5,14 @@ import { connect } from "react-redux";
 import { getOrders } from "./action/order";
 import { getServices } from "./action/service";
 import { getUser, getAdmins } from "./action/auth";
+import { getReviews } from "./action/review";
 
 /// GraphQL
 import { useQuery } from "@apollo/react-hooks";
 import { GET_ORDERS_QUERY } from "./graphQl/order";
 import { GET_SERVICES } from "./graphQl/service";
 import { GET_ADMINS } from "./graphQl/auth";
+import { GET_REVIEW } from "./graphQl/review";
 
 /// Router
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -36,16 +38,19 @@ const App = ({
    auth,
    getAdmins,
    admins,
+   getReviews,
 }) => {
-   const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
    const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
    const { data: adminQuery } = useQuery(GET_ADMINS);
+   const { data: reviewQuery } = useQuery(GET_REVIEW);
+   const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
    useEffect(() => {
       getOrders(ordersQuery && ordersQuery.getOrders);
       getServices(servicesQuery && servicesQuery.getServices);
       getAdmins(adminQuery && adminQuery.getAdmins);
+      getReviews(reviewQuery && reviewQuery.getReviews);
       !auth && getUser();
-   }, [ordersQuery]);
+   }, [auth]);
 
    return (
       <Router>
@@ -101,4 +106,5 @@ export default connect(mapStateToProps, {
    getServices,
    getUser,
    getAdmins,
+   getReviews,
 })(App);

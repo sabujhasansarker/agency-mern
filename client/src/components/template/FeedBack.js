@@ -2,37 +2,10 @@ import React from "react";
 
 import Slider from "react-slick";
 
-const FeedBack = () => {
-   const clients = [
-      {
-         name: "Nash Patrik",
-         image: "https://i.ibb.co/HCy0JCz/Ellipse-90.png",
-         designation: "CEO, Manpol",
-         comment:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-      },
-      {
-         name: "Nash Patrik",
-         image: "https://i.ibb.co/HCy0JCz/Ellipse-90.png",
-         designation: "CEO, Manpol",
-         comment:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-      },
-      {
-         name: "Nash Patrik",
-         image: "https://i.ibb.co/HCy0JCz/Ellipse-90.png",
-         designation: "CEO, Manpol",
-         comment:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-      },
-      {
-         name: "Nash Patrik",
-         image: "https://i.ibb.co/HCy0JCz/Ellipse-90.png",
-         designation: "CEO, Manpol",
-         comment:
-            "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus commodo ipsum duis laoreet maecenas. Feugiat ",
-      },
-   ];
+/// Redux
+import { connect } from "react-redux";
+
+const FeedBack = ({ reviews }) => {
    const settings = {
       slidesToShow: 3,
       slidesToScroll: 3,
@@ -71,24 +44,29 @@ const FeedBack = () => {
                Clients <span>Feedback</span>
             </h2>
             <Slider settings {...settings}>
-               {clients.map((client, i) => (
-                  <div className="client-container" key={i}>
-                     <div className="client">
-                        <div className="client-header">
-                           <img src={client.image} alt="" />
-                           <div className="client-name">
-                              <h4>{client.name}</h4>
-                              <p>{client.designation}</p>
+               {reviews &&
+                  reviews.map((review, i) => (
+                     <div className="client-container" key={i}>
+                        <div className="client">
+                           <div className="client-header">
+                              <img src={review.photo} alt="" />
+                              <div className="client-name">
+                                 <h4>{review.displayName}</h4>
+                                 <p>{review.designation}</p>
+                              </div>
                            </div>
+                           <p>{review.des}</p>
                         </div>
-                        <p>{client.comment}</p>
                      </div>
-                  </div>
-               ))}
+                  ))}
             </Slider>
          </div>
       </div>
    );
 };
 
-export default FeedBack;
+const mapStateToProps = (state) => ({
+   reviews: state.review.reviews,
+});
+
+export default connect(mapStateToProps, {})(FeedBack);

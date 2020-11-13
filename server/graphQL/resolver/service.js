@@ -1,5 +1,6 @@
 const Service = require("../../models/Service");
 const { GraphQLError } = require("graphql");
+
 module.exports = {
    Query: {
       async getServices() {

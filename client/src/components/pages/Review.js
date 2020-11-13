@@ -1,7 +1,11 @@
 import React from "react";
 import ClientNav from "../template/ClientNav";
 
-const Review = () => {
+/// Redux
+import { connect } from "react-redux";
+
+const Review = ({ reviews }) => {
+   console.log(reviews);
    return (
       <div className="admin client">
          <ClientNav active="Review" addOrderMenu={true} />
@@ -36,4 +40,8 @@ const Review = () => {
    );
 };
 
-export default Review;
+const mapStateToProps = (state) => ({
+   reviews: state.review.reviews,
+});
+
+export default connect(mapStateToProps, {})(Review);
