@@ -40,7 +40,7 @@ module.exports = gql`
       #Service
       getServices: [Service]
       getService(serviceId: ID): Service
-      getReview: [Review]
+      getReviews: [Review]
    }
    # Mutation
    type Mutation {

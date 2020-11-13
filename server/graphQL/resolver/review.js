@@ -17,4 +17,19 @@ module.exports = {
          }
       },
    },
+   Mutation: {
+      async addReview(_, { displayName, designation, des }) {
+         try {
+            const newReview = new Review({
+               displayName,
+               designation,
+               des,
+            });
+            await newReview.save();
+            return newReview;
+         } catch (err) {
+            throw new GraphQLError(err.message);
+         }
+      },
+   },
 };
