@@ -4,7 +4,7 @@ import ClientNav from "../template/ClientNav";
 const Review = () => {
    return (
       <div className="admin client">
-         <ClientNav active="Review" />
+         <ClientNav active="Review" addOrderMenu={true} />
          <div className="admin-content">
             <form className="form">
                <div className="form-group">

@@ -4,7 +4,6 @@ import React from "react";
 import { connect } from "react-redux";
 
 import ClientNav from "../template/ClientNav";
-import iphone from "../../images/iphone.png";
 
 const OrderList = ({ orders, auth }) => {
    let ordersMatch = orders.filter(
@@ -12,7 +11,7 @@ const OrderList = ({ orders, auth }) => {
    );
    return (
       <div className="admin client order-list">
-         <ClientNav active="Order List" />
+         <ClientNav active="Order List" addOrderMenu={true} />
          <div className="admin-content">
             <div className="orders">
                {ordersMatch.map((order, i) => (

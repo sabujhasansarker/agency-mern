@@ -43,16 +43,19 @@ const Navbar = ({ auth, logOut }) => {
                >
                   <ul>
                      <li>
-                        <Link to="/">Home</Link>
+                        <a href="#home">Home</a>
                      </li>
                      <li>
-                        <Link to="/">Our Portfolio</Link>
+                        <a href="#service">Our Service</a>
                      </li>
                      <li>
-                        <Link to="/">Our Team</Link>
+                        <a href="#work">Work</a>
                      </li>
                      <li>
-                        <Link to="/">Contact Us</Link>
+                        <a href="#feedback">Feedback</a>
+                     </li>
+                     <li>
+                        <a href="#contact">Contact Us</a>
                      </li>
                      {auth ? (
                         <Fragment>

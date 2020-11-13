@@ -65,7 +65,7 @@ const FeedBack = () => {
       ],
    };
    return (
-      <div className="feedback">
+      <div className="feedback" id="feedback">
          <div className="container">
             <h2 className="heading">
                Clients <span>Feedback</span>

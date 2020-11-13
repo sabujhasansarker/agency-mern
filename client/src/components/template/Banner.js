@@ -4,7 +4,7 @@ import banner from "../../images/banner.png";
 
 const Banner = () => {
    return (
-      <section className="banner">
+      <section className="banner" id="home">
          <div className="container">
             <div className="banner-left">
                <h1>Let’s Grow Your Brand To The Next Level</h1>

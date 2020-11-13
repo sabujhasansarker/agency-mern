@@ -20,7 +20,7 @@ const Footer = () => {
    };
    return (
       <footer>
-         <div className="container">
+         <div className="container" id="contact">
             <div className="left">
                <h2>Let us handle your project, professionally.</h2>
                <p className="text">

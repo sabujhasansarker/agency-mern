@@ -36,7 +36,7 @@ const Work = () => {
       { src: "https://i.ibb.co/S6dTNdQ/Rectangle-16.png" },
    ];
    return (
-      <div className="work">
+      <div className="work" id="work">
          <div className="container">
             <div className="heading">
                Here are some of <span>our works</span>

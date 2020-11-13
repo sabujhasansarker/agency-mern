@@ -13,7 +13,7 @@ import reviewActive from "../../images/review-active.png";
 /// redux
 import { connect } from "react-redux";
 
-const ClientNav = ({ active, auth: { displayName } }) => {
+const ClientNav = ({ active, auth: { displayName }, addOrderMenu }) => {
    const open = useRef(false);
    const [openNav, setOpenNav] = useState(false);
    const onClick = () => {
@@ -42,7 +42,7 @@ const ClientNav = ({ active, auth: { displayName } }) => {
                <img src={logo} alt="" className="logo" />
             </Link>
             <ul>
-               <li>
+               <li style={addOrderMenu && { display: "none" }}>
                   <Link
                      to="/add-order"
                      className={`${

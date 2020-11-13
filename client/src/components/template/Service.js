@@ -28,19 +28,19 @@ const Service = ({ services }) => {
    };
 
    return (
-      <section className="service">
+      <section className="service" id="service">
          <div className="container">
             <h2 className="heading">
                Provide awesome <span>services</span>
             </h2>
-            {services && services.length === 1 && services ? (
+            {services && services.length <= 3 && services ? (
                services.map((d, i) => (
                   <Link
                      to={`/add-order/${d.id}`}
                      className="single-container"
                      key={i}
                   >
-                     <div className="single-slider">
+                     <div className="single-slider single-slider-2">
                         <img src={d.icon} alt="" />
                         <h3>{d.title}</h3>
                         <p>{d.dec}</p>

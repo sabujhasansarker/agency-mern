@@ -3,6 +3,11 @@
 @import "./scss/mixing";
 @import "./scss/utilities";
 
+/// smooth scrooling
+html {
+   scroll-behavior: smooth;
+}
+
 // Navbar
 body.nav-open {
    overflow: hidden;
@@ -251,6 +256,9 @@ footer {
    .single-slider {
       width: 35%;
       margin: 0 auto;
+   }
+   .single-slider-2 {
+      margin: 5rem auto;
    }
    .single-container {
       margin: 5rem 0;
