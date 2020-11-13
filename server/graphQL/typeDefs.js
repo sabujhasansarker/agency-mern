@@ -28,6 +28,7 @@ module.exports = gql`
       displayName: String!
       designation: String!
       des: String!
+      photo: String!
    }
    # query
    type Query {
@@ -69,6 +70,11 @@ module.exports = gql`
       #Mail
       sendMail(email: String!, name: String!, message: String!): String
       #Add review
-      addReview(displayName: String, designation: String, des: String): Review
+      addReview(
+         displayName: String!
+         designation: String!
+         des: String!
+         photo: String!
+      ): Review
    }
 `;

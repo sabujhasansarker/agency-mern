@@ -18,12 +18,13 @@ module.exports = {
       },
    },
    Mutation: {
-      async addReview(_, { displayName, designation, des }) {
+      async addReview(_, { displayName, designation, des, photo }) {
          try {
             const newReview = new Review({
                displayName,
                designation,
                des,
+               photo,
             });
             await newReview.save();
             return newReview;
