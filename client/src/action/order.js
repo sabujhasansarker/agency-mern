@@ -9,6 +9,7 @@ export const getOrders = (data) => (dispatch) => {
 };
 
 export const addOrder = (data) => (dispatch) => {
+   console.log(data);
    data &&
       dispatch({
          type: ADD_ORDER,

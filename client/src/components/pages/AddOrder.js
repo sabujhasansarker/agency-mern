@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import ClientNav from "../template/ClientNav";
 import upload from "../../images/upload.png";
 
 /// redux
 import { connect } from "react-redux";
 import { getService } from "../../action/service";
+import { addOrder } from "../../action/order";
 
 /// GraphQl
 import { useQuery, useMutation } from "@apollo/react-hooks";
@@ -13,11 +14,13 @@ import { ADD_ORDER } from "../../graphQl/order";
 
 /// firebase
 import { storage } from "../../firebase";
+
 const AddOrder = ({
    auth: { displayName, email },
    service,
    match,
    getService,
+   addOrder,
 }) => {
    /// Service id find
    const serviceId = match.params.serviceId;
@@ -42,7 +45,6 @@ const AddOrder = ({
    const { details, price } = formData;
    const [alert, setAlert] = useState(null);
    const [file, setFile] = useState(null);
-   const [complete, setComplete] = useState(1);
 
    /// file change
    const fileChange = (e) => {
@@ -80,7 +82,6 @@ const AddOrder = ({
          setAlert({ msg: "please set minimum price for order", error: true });
          clearAlert();
       } else {
-         console.log("not ok");
          storage
             .ref()
             .child(`/orders/${file.name}`)
@@ -89,39 +90,41 @@ const AddOrder = ({
                let d = await storage
                   .ref(`/orders/${file.name}`)
                   .getDownloadURL();
-               setFormData({ ...formData, file: d });
-               setComplete(complete + 1);
-               setTimeout(() => {
-                  setComplete(complete + 1);
+               var percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
+
+               if (d && percentage >= 100) {
+                  const finalData = {
+                     name: formData.name,
+                     email: formData.email,
+                     details: formData.details,
+                     price: formData.price,
+                     process: true,
+                     file: d,
+                     serviceId: serviceId,
+                  };
+
+                  /// Add order
+                  // AddOrder({
+                  //    variables: finalData,
+                  // });
+
+                  /// Redux
+                  addOrder(finalData);
+
+                  /// Alert
+                  setAlert({ msg: "Your order completed ***", error: false });
+                  clearAlert();
+
                   setFormData({
                      name: displayName,
                      email,
                      details: "",
                      price: "",
                   });
-               }, 1000);
+               }
             });
       }
    };
-
-   /// Add order
-   if (formData.file && complete === 1) {
-      AddOrder({
-         variables: {
-            name: formData.name,
-            email: formData.email,
-            details: formData.details,
-            price: formData.price,
-            process: true,
-            file: formData.file,
-            serviceId: serviceId,
-         },
-      });
-
-      /// Alert
-      setAlert({ msg: "Your order completed ***", error: false });
-      clearAlert();
-   }
 
    return (
       <div className="admin client">
@@ -219,4 +222,4 @@ const mapStateToProps = (state) => ({
    service: state.service.service,
    orders: state.order.orders,
 });
-export default connect(mapStateToProps, { getService })(AddOrder);
+export default connect(mapStateToProps, { getService, addOrder })(AddOrder);
