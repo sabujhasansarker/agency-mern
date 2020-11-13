@@ -23,6 +23,12 @@ module.exports = gql`
       file: String!
       service: Service!
    }
+   type Review {
+      id: ID!
+      displayName: String!
+      designation: String!
+      des: String!
+   }
    # query
    type Query {
       #Order
@@ -34,6 +40,7 @@ module.exports = gql`
       #Service
       getServices: [Service]
       getService(serviceId: ID): Service
+      getReview: [Review]
    }
    # Mutation
    type Mutation {
@@ -61,5 +68,7 @@ module.exports = gql`
       deleteService(serviceId: ID!): String
       #Mail
       sendMail(email: String!, name: String!, message: String!): String
+      #Add review
+      addReview(displayName: String, designation: String, des: String): Review
    }
 `;
