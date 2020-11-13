@@ -347,10 +347,11 @@ footer {
       border: 1px solid #bfbfbf;
       box-sizing: border-box;
       border-radius: 4px;
-      min-height: 212px;
+      min-height: 300px;
       p {
          color: #707070;
          margin-top: 14px;
+         word-break: break-word;
       }
       &-header {
          @include flex(center, flex-start);

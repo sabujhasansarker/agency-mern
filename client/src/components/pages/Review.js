@@ -3,12 +3,13 @@ import ClientNav from "../template/ClientNav";
 
 /// Redux
 import { connect } from "react-redux";
+import { addReview } from "../../action/review";
 
 /// GraphQl
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_REVIEW, GET_REVIEW } from "../../graphQl/review";
 
-const Review = ({ auth: { displayName, photoURL } }) => {
+const Review = ({ auth: { displayName, photoURL }, addReview }) => {
    /// GraphQl
    const [AddReview, {}] = useMutation(ADD_REVIEW, {
       update(proxy, result) {
@@ -21,7 +22,7 @@ const Review = ({ auth: { displayName, photoURL } }) => {
          });
 
          /// Redux
-         console.log(result.data.addReview);
+         addReview(result.data.addReview);
       },
       onError(err) {
          console.log(err.graphQLErrors[0].message);
@@ -95,4 +96,4 @@ const mapStateToProps = (state) => ({
    auth: state.auth.auth,
 });
 
-export default connect(mapStateToProps, {})(Review);
+export default connect(mapStateToProps, { addReview })(Review);
