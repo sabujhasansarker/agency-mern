@@ -5,11 +5,10 @@ import upload from "../../images/upload.png";
 /// redux
 import { connect } from "react-redux";
 import { getService } from "../../action/service";
-import { addOrder, getOrders } from "../../action/order";
+import { addOrder } from "../../action/order";
 
 /// GraphQl
-import { useMutation, useLazyQuery } from "@apollo/react-hooks";
-import { GET_SERVICE } from "../../graphQl/service";
+import { useMutation } from "@apollo/react-hooks";
 import { ADD_ORDER, GET_ORDERS_QUERY } from "../../graphQl/order";
 
 /// firebase
@@ -19,19 +18,10 @@ const AddOrder = ({
    auth: { displayName, email },
    service,
    match,
-   getService,
    addOrder,
 }) => {
    /// Service id find
    const serviceId = match.params.serviceId;
-
-   /// services query
-   const [QueryService, { data }] = useLazyQuery(GET_SERVICE);
-
-   /// data pass on redux
-   if (data) {
-      getService(data && data.getService);
-   }
 
    /// Add order
    const [AddOrder, {}] = useMutation(ADD_ORDER, {

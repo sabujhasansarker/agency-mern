@@ -7,10 +7,13 @@ export const GET_ORDERS_QUERY = gql`
          name
          details
          price
+         email
+         process
          service {
             id
             title
             icon
+            dec
             admin {
                id
                email
@@ -44,10 +47,13 @@ export const ADD_ORDER = gql`
          name
          details
          price
+         email
+         process
          service {
             id
             title
             icon
+            dec
             admin {
                id
                email

@@ -45,7 +45,8 @@ const App = ({
       getServices(servicesQuery && servicesQuery.getServices);
       getAdmins(adminQuery && adminQuery.getAdmins);
       !auth && getUser();
-   }, [loading]);
+   }, [ordersQuery]);
+
    return (
       <Router>
          <Switch>
