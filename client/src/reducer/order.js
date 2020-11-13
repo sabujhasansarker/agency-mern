@@ -1,4 +1,4 @@
-import { GET_ORDERS } from "../action/type";
+import { GET_ORDERS, ADD_ORDER } from "../action/type";
 
 const initialState = {
    orders: [],
@@ -12,6 +12,11 @@ export default (state = initialState, action) => {
          return {
             ...state,
             orders: payload,
+         };
+      case ADD_ORDER:
+         return {
+            ...state,
+            orders: [payload, ...state.orders],
          };
       default:
          return state;

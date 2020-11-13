@@ -5,6 +5,8 @@ export const GET_ORDERS_QUERY = gql`
       getOrders {
          id
          name
+         details
+         price
          service {
             id
             title
@@ -40,6 +42,8 @@ export const ADD_ORDER = gql`
       ) {
          id
          name
+         details
+         price
          service {
             id
             title

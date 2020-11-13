@@ -1,16 +1,16 @@
-import React, { useState, useRef } from "react";
+import React, { useState } from "react";
 import ClientNav from "../template/ClientNav";
 import upload from "../../images/upload.png";
 
 /// redux
 import { connect } from "react-redux";
 import { getService } from "../../action/service";
-import { addOrder } from "../../action/order";
+import { addOrder, getOrders } from "../../action/order";
 
 /// GraphQl
-import { useQuery, useMutation } from "@apollo/react-hooks";
+import { useMutation, useLazyQuery } from "@apollo/react-hooks";
 import { GET_SERVICE } from "../../graphQl/service";
-import { ADD_ORDER } from "../../graphQl/order";
+import { ADD_ORDER, GET_ORDERS_QUERY } from "../../graphQl/order";
 
 /// firebase
 import { storage } from "../../firebase";
@@ -26,14 +26,31 @@ const AddOrder = ({
    const serviceId = match.params.serviceId;
 
    /// services query
-   const { data } = useQuery(GET_SERVICE, {
-      variables: { serviceId },
-   });
+   const [QueryService, { data }] = useLazyQuery(GET_SERVICE);
 
    /// data pass on redux
    if (data) {
       getService(data && data.getService);
    }
+
+   /// Add order
+   const [AddOrder, {}] = useMutation(ADD_ORDER, {
+      update(proxy, result) {
+         const data = proxy.readQuery({
+            query: GET_ORDERS_QUERY,
+         });
+         proxy.writeQuery({
+            query: GET_ORDERS_QUERY,
+            data,
+         });
+
+         /// Redux
+         addOrder(result.data.addOrder);
+      },
+      onError(err) {
+         console.log(err.graphQLErrors[0].message);
+      },
+   });
 
    /// form data define
    const [formData, setFormData] = useState({
@@ -57,9 +74,6 @@ const AddOrder = ({
          };
       }
    };
-
-   /// Add order
-   const [AddOrder, {}] = useMutation(ADD_ORDER);
 
    /// Onchnage
    const onChange = (e) =>
@@ -104,12 +118,9 @@ const AddOrder = ({
                   };
 
                   /// Add order
-                  // AddOrder({
-                  //    variables: finalData,
-                  // });
-
-                  /// Redux
-                  addOrder(finalData);
+                  AddOrder({
+                     variables: finalData,
+                  });
 
                   /// Alert
                   setAlert({ msg: "Your order completed ***", error: false });
