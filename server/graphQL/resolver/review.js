@@ -7,7 +7,7 @@ module.exports = {
       async getReviews() {
          try {
             const reviews = await Review.find();
-            if (reviews) {
+            if (reviews.length >= 1) {
                return reviews;
             } else {
                throw new GraphQLError("Review not found");
