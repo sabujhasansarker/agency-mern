@@ -8,10 +8,12 @@ import { logOut } from "../../action/auth";
 /// image
 import logo from "../../images/logo.png";
 
-const Navbar = ({ auth, logOut }) => {
+const Navbar = ({ auth, logOut, admins }) => {
    const [scrollPosition, setScrollPosition] = useState(0);
    const toggle = useRef(false);
    const [toggleMenu, setToggleMenu] = useState(false);
+   const adminMatch = admins.filter((admin) => admin.email == auth.email);
+
    useEffect(() => {
       window.addEventListener("scroll", () =>
          setScrollPosition(window.pageYOffset)
@@ -59,7 +61,33 @@ const Navbar = ({ auth, logOut }) => {
                      </li>
                      {auth ? (
                         <Fragment>
-                           <li>{auth.displayName}</li>
+                           <li>
+                              {auth.displayName}{" "}
+                              {adminMatch ? (
+                                 <ul>
+                                    <li>
+                                       <Link to="/services">Services</Link>
+                                    </li>
+                                    <li>
+                                       <Link to="/add-service">
+                                          Add Service
+                                       </Link>
+                                    </li>
+                                    <li>
+                                       <Link to="/make-admin">Make Admin</Link>
+                                    </li>
+                                 </ul>
+                              ) : (
+                                 <ul>
+                                    <li>
+                                       <Link to="/order-list">Order List</Link>
+                                    </li>
+                                    <li>
+                                       <Link to="/review">Add Review</Link>
+                                    </li>
+                                 </ul>
+                              )}
+                           </li>
                            <li
                               className="btn-primary logout"
                               onClick={() => logOut()}
@@ -84,6 +112,7 @@ const Navbar = ({ auth, logOut }) => {
 
 const mapStateToProps = (state) => ({
    auth: state.auth.auth,
+   admins: state.auth.admins,
 });
 
 export default connect(mapStateToProps, { logOut })(Navbar);

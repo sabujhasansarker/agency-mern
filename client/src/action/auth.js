@@ -1,4 +1,4 @@
-import { GET_USER, USER_ERROR, GET_ADMINS } from "./type";
+import { GET_USER, USER_ERROR, GET_ADMINS, ADD_ADMIN } from "./type";
 import { google, auth } from "../firebase";
 
 /// Get user
@@ -37,4 +37,9 @@ export const logOut = () => (dispatch) => {
 /// Get auth
 export const getAdmins = (auth) => (dispatch) => {
    auth && dispatch({ type: GET_ADMINS, payload: auth });
+};
+
+/// Add admin
+export const addAdmin = (auth) => (dispatch) => {
+   auth && dispatch({ type: ADD_ADMIN, payload: auth });
 };

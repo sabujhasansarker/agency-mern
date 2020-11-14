@@ -1,4 +1,4 @@
-import { GET_USER, GET_ADMINS } from "../action/type";
+import { GET_USER, GET_ADMINS, ADD_ADMIN } from "../action/type";
 
 const initialState = {
    auth: null,
@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
          return {
             ...state,
             admins: payload,
+         };
+      case ADD_ADMIN:
+         return {
+            ...state,
+            admins: [payload, ...state.admins],
          };
       default:
          return state;

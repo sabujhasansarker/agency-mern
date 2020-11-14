@@ -8,3 +8,22 @@ export const GET_ADMINS = gql`
       }
    }
 `;
+
+/// Admin
+export const ADD_ADMIN = gql`
+   mutation AddAdmin($email: String!) {
+      addAdmin(email: $email) {
+         id
+         email
+      }
+   }
+`;
+
+export const ADMIN_QUERY = gql`
+   query GetAdmins {
+      getAdmins {
+         id
+         email
+      }
+   }
+`;

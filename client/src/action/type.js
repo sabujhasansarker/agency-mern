@@ -13,6 +13,7 @@ export const USER_ERROR = "USER_ERROR";
 
 /// Admin
 export const GET_ADMINS = "GET_ADMINS";
+export const ADD_ADMIN = "ADD_ADMIN";
 
 /// Review
 export const GET_REVIEW = "GET_REVIEW";

@@ -13,6 +13,7 @@ import { ADD_ORDER, GET_ORDERS_QUERY } from "../../graphQl/order";
 
 /// firebase
 import { storage } from "../../firebase";
+import Alert from "../layout/Alert";
 
 const AddOrder = ({
    auth: { displayName, email },
@@ -131,15 +132,7 @@ const AddOrder = ({
       <div className="admin client">
          <ClientNav active="Add Order" />
          <div className="admin-content">
-            {alert && (
-               <p
-                  className={`alert text-center ${
-                     alert.error ? "alert-error" : ""
-                  }`}
-               >
-                  {alert.msg}
-               </p>
-            )}
+            {alert && <Alert alert={alert} />}
             <form className="form" onSubmit={(e) => onSubmit(e)}>
                <div className="form-group">
                   <div className="form-item">
