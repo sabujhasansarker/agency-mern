@@ -1,7 +1,11 @@
 import React from "react";
 import AdminNav from "../template/AdminNav";
 
-const ServiceList = () => {
+/// redux
+import { connect } from "react-redux";
+
+const ServiceList = ({ services }) => {
+   console.log(services);
    return (
       <div className="admin">
          <AdminNav active="Service List" />
@@ -17,6 +21,10 @@ const ServiceList = () => {
                   </tr>
                </thead>
                <tbody>
+                  {services &&
+                     services.map((service) => (
+                        <tr key={service.id}>{/* <td>{service.}</td> */}</tr>
+                     ))}
                   <tr>
                      <td>Sufi Ahmed Hamim</td>
                      <td>sufi@gmail.com</td>
@@ -42,4 +50,8 @@ const ServiceList = () => {
    );
 };
 
-export default ServiceList;
+const mapStateToProps = (state) => ({
+   services: state.service.services,
+});
+
+export default connect(mapStateToProps, {})(ServiceList);
