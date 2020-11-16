@@ -7,34 +7,84 @@ import { connect } from "react-redux";
 
 /// grraphql
 import { useMutation } from "@apollo/react-hooks";
+import { SERVICE_ADD, GET_SERVICE } from "../../graphQl/service";
 
 /// firebase
 import { storage } from "../../firebase";
 
 /// fileChange
 import { fileChange, fileSave } from "../../utilities/file";
+import Alert from "../layout/Alert";
 
-const AddService = () => {
+const AddService = ({ auth, admins }) => {
+   /// find admin id
+   const admin = admins && admins.find((admin) => admin.email == auth.email);
+
+   /// Formdata
    const [formData, setFormData] = useState({
       title: "",
       dec: "",
       icon: "",
-      admin: "",
+      admin: admin.id,
    });
    const [file, setFile] = useState(null);
+   const [alert, setAlert] = useState(null);
+
+   /// Add service
+   const [AddService, {}] = useMutation(SERVICE_ADD, {
+      update(proxy, result) {
+         const data = proxy.readQuery({
+            query: GET_SERVICE,
+         });
+         proxy.writeQuery({
+            query: GET_SERVICE,
+            data,
+         });
+
+         /// Redux
+         // addOrder(result.data.addOrder);
+         console.log(result.data);
+      },
+      onError(err) {
+         console.log(err.graphQLErrors[0].message);
+      },
+   });
+
+   /// file Change
+   const onFileChange = (e) => {
+      const fileName = fileChange(e, "png");
+      setFormData({ ...formData, icon: fileName.fileName });
+      setAlert(fileName.error);
+      clearAlert();
+   };
+
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
 
    const onSubmit = (e) => {
       e.preventDefault();
-      // setFormData({ ...formData, icon: fileSave(file) });
-      console.log(fileSave(file));
+      if (formData.title && formData.dec && formData.icon) {
+         setAlert({ msg: "Save service successfully ***", error: false });
+         fileSave(AddService, formData);
+         clearAlert();
+      } else {
+         setAlert({ msg: "All field are requird ***", error: true });
+         clearAlert();
+      }
+      // setFormData({ ...formData, icon: file && file });
+   };
+
+   const clearAlert = () => {
+      setTimeout(() => {
+         setAlert(null);
+      }, 2000);
    };
 
    return (
       <div className="admin">
          <AdminNav active="Add Service" />
          <div className="add-service admin-content">
+            {alert && <Alert alert={alert} />}
             <form className="form" onSubmit={(e) => onSubmit(e)}>
                <div className="form-group flex">
                   <div className="from-item">
@@ -56,7 +106,7 @@ const AddService = () => {
                         type="file"
                         name="image"
                         id="image"
-                        onChange={(e) => setFile(fileChange(e))}
+                        onChange={(e) => onFileChange(e)}
                      />
                   </div>
                </div>
@@ -78,4 +128,9 @@ const AddService = () => {
    );
 };
 
-export default connect(null, {})(AddService);
+const mapStateToProps = (state) => ({
+   admins: state.auth.admins,
+   auth: state.auth.auth,
+});
+
+export default connect(mapStateToProps, {})(AddService);
