@@ -7,10 +7,7 @@ import { connect } from "react-redux";
 
 /// grraphql
 import { useMutation } from "@apollo/react-hooks";
-import { SERVICE_ADD, GET_SERVICE } from "../../graphQl/service";
-
-/// firebase
-import { storage } from "../../firebase";
+import { SERVICE_ADD, GET_SERVICES } from "../../graphQl/service";
 
 /// fileChange
 import { fileChange, fileSave } from "../../utilities/file";
@@ -27,26 +24,24 @@ const AddService = ({ auth, admins }) => {
       icon: "",
       admin: admin.id,
    });
-   const [file, setFile] = useState(null);
    const [alert, setAlert] = useState(null);
 
    /// Add service
    const [AddService, {}] = useMutation(SERVICE_ADD, {
       update(proxy, result) {
          const data = proxy.readQuery({
-            query: GET_SERVICE,
+            query: GET_SERVICES,
          });
          proxy.writeQuery({
-            query: GET_SERVICE,
+            query: GET_SERVICES,
             data,
          });
 
          /// Redux
-         // addOrder(result.data.addOrder);
-         console.log(result.data);
+         console.log(result.data.addService);
       },
       onError(err) {
-         console.log(err.graphQLErrors[0].message);
+         console.log(err);
       },
    });
 

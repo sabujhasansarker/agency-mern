@@ -32,11 +32,9 @@ export const fileSave = (add, variable) => {
             .ref(`/orders/${variable.icon.name}`)
             .getDownloadURL();
          var percentage = (snap.bytesTransferred / snap.totalBytes) * 100;
-
          if (d && percentage >= 100) {
-            // add({ variable });
             variable.icon = d;
-            console.log(variable);
+            add({ variables: variable });
          }
       });
 };
