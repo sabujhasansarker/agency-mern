@@ -1,4 +1,4 @@
-import { GET_SERVICES, GET_SERVICE } from "../action/type";
+import { GET_SERVICES, GET_SERVICE, ADD_SERVICE } from "../action/type";
 
 const initialState = {
    services: [],
@@ -17,6 +17,11 @@ export default (state = initialState, action) => {
          return {
             ...state,
             service: payload,
+         };
+      case ADD_SERVICE:
+         return {
+            ...state,
+            services: [payload, ...state.services],
          };
       default:
          return state;

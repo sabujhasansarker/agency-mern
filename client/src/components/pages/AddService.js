@@ -4,6 +4,7 @@ import upload from "../../images/upload.png";
 
 /// redux
 import { connect } from "react-redux";
+import { addService } from "../../action/service";
 
 /// grraphql
 import { useMutation } from "@apollo/react-hooks";
@@ -13,7 +14,7 @@ import { SERVICE_ADD, GET_SERVICES } from "../../graphQl/service";
 import { fileChange, fileSave } from "../../utilities/file";
 import Alert from "../layout/Alert";
 
-const AddService = ({ auth, admins }) => {
+const AddService = ({ auth, admins, addService }) => {
    /// find admin id
    const admin = admins && admins.find((admin) => admin.email == auth.email);
 
@@ -38,7 +39,7 @@ const AddService = ({ auth, admins }) => {
          });
 
          /// Redux
-         console.log(result.data.addService);
+         addService(result.data.addService);
       },
       onError(err) {
          console.log(err);
@@ -62,11 +63,11 @@ const AddService = ({ auth, admins }) => {
          setAlert({ msg: "Save service successfully ***", error: false });
          fileSave(AddService, formData);
          clearAlert();
+         setFormData({ title: "", dec: "", icon: "", admin: admin.id });
       } else {
          setAlert({ msg: "All field are requird ***", error: true });
          clearAlert();
       }
-      // setFormData({ ...formData, icon: file && file });
    };
 
    const clearAlert = () => {
@@ -128,4 +129,4 @@ const mapStateToProps = (state) => ({
    auth: state.auth.auth,
 });
 
-export default connect(mapStateToProps, {})(AddService);
+export default connect(mapStateToProps, { addService })(AddService);
