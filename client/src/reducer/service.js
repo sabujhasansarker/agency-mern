@@ -1,4 +1,9 @@
-import { GET_SERVICES, GET_SERVICE, ADD_SERVICE } from "../action/type";
+import {
+   GET_SERVICES,
+   GET_SERVICE,
+   ADD_SERVICE,
+   DELETE_SERVICE,
+} from "../action/type";
 
 const initialState = {
    services: [],
@@ -22,6 +27,13 @@ export default (state = initialState, action) => {
          return {
             ...state,
             services: [payload, ...state.services],
+         };
+      case DELETE_SERVICE:
+         return {
+            ...state,
+            services: state.services.filter(
+               (service) => service.id !== payload
+            ),
          };
       default:
          return state;

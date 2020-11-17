@@ -1,4 +1,4 @@
-import { GET_SERVICES, GET_SERVICE, ADD_SERVICE } from "./type";
+import { GET_SERVICES, GET_SERVICE, ADD_SERVICE, DELETE_SERVICE } from "./type";
 
 export const getServices = (data) => (dispatch) => {
    data &&
@@ -21,5 +21,13 @@ export const addService = (data) => (dispatch) => {
       dispatch({
          type: ADD_SERVICE,
          payload: data,
+      });
+};
+
+export const deleteService = (id) => (dispatch) => {
+   id &&
+      dispatch({
+         type: DELETE_SERVICE,
+         payload: id,
       });
 };

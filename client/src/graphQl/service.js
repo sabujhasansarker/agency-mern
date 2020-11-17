@@ -30,3 +30,9 @@ export const SERVICE_ADD = gql`
       }
    }
 `;
+
+export const DELETE_SERVICE = gql`
+   mutation DeleteService($serviceId: ID!) {
+      deleteService(serviceId: $serviceId)
+   }
+`;

@@ -3,9 +3,16 @@ import AdminNav from "../template/AdminNav";
 
 /// redux
 import { connect } from "react-redux";
+import { deleteService } from "../../action/service";
 
-const ServiceList = ({ services }) => {
-   console.log(services);
+/// Graphql
+import { useMutation } from "@apollo/react-hooks";
+import { DELETE_SERVICE } from "../../graphQl/service";
+
+const ServiceList = ({ services, deleteService }) => {
+   /// Delete Service
+   const [DeleteService, {}] = useMutation(DELETE_SERVICE);
+
    return (
       <div className="admin">
          <AdminNav active="Service List" />
@@ -31,9 +38,23 @@ const ServiceList = ({ services }) => {
                            <td style={{ width: "133px", textAlign: "center" }}>
                               {service.orders && service.orders.length}
                            </td>
-                           <td style={{ width: "33%" }}>{service.dec}</td>
+                           <td
+                              style={{ width: "33%", wordBreak: "break-word" }}
+                           >
+                              {service.dec}
+                           </td>
                            <td>
-                              <div className="btn-delete">Delete</div>
+                              <div
+                                 className="btn-delete"
+                                 onClick={() => {
+                                    deleteService(service.id);
+                                    DeleteService({
+                                       variables: { serviceId: service.id },
+                                    });
+                                 }}
+                              >
+                                 Delete
+                              </div>
                            </td>
                         </tr>
                      ))}
@@ -48,4 +69,4 @@ const mapStateToProps = (state) => ({
    services: state.service.services,
 });
 
-export default connect(mapStateToProps, {})(ServiceList);
+export default connect(mapStateToProps, { deleteService })(ServiceList);
