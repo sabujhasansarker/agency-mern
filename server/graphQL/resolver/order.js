@@ -1,6 +1,6 @@
 const Order = require("../../models/Order");
+const Server = require("../../models/Service");
 const { GraphQLError } = require("graphql");
-const { populate } = require("../../models/Order");
 
 module.exports = {
    Query: {
@@ -53,7 +53,14 @@ module.exports = {
                   service: serviceId,
                });
                await newOrder.save();
-               const order = await Order.findById(newOrder)
+               await Server.findByIdAndUpdate(
+                  serviceId,
+                  {
+                     $push: { orders: newOrder._id },
+                  },
+                  { new: true }
+               );
+               const order = await Order.findById(newOrder._id)
                   .sort({ date: -1 })
                   .populate({ path: "service", populate: { path: "admin" } })
                   .exec();

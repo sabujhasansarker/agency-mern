@@ -12,6 +12,7 @@ module.exports = gql`
       icon: String!
       dec: String!
       admin: Admin!
+      orders: [Order!]
    }
    type Order {
       id: ID!

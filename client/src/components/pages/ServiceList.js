@@ -13,11 +13,11 @@ const ServiceList = ({ services }) => {
             <table>
                <thead>
                   <tr>
-                     <th>Name</th>
-                     <th>Email</th>
-                     <th>Service</th>
-                     <th>Project Details</th>
-                     <th>Status</th>
+                     <th>Title</th>
+                     <th>Admin Email</th>
+                     <th>Number of order</th>
+                     <th>Details</th>
+                     <th>Action</th>
                   </tr>
                </thead>
                <tbody>
@@ -26,9 +26,9 @@ const ServiceList = ({ services }) => {
                         <tr key={service.id}>{/* <td>{service.}</td> */}</tr>
                      ))}
                   <tr>
-                     <td>Sufi Ahmed Hamim</td>
+                     <td>Service Title</td>
                      <td>sufi@gmail.com</td>
-                     <td>Graphic Design</td>
+                     <td>4</td>
                      <td>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
                      </td>

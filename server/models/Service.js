@@ -8,6 +8,7 @@ const serviceSchema = new Schema({
       type: Schema.Types.ObjectId,
       ref: "Admin",
    },
+   orders: [{ type: Schema.Types.ObjectId, ref: "Order" }],
 });
 
 module.exports = model("Service", serviceSchema);

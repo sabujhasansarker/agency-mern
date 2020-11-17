@@ -8,6 +8,7 @@ module.exports = {
             const services = await Service.find()
                .sort({ date: -1 })
                .populate("admin")
+               .populate("orders")
                .exec();
             if (services.length > 0) {
                return services;
@@ -23,6 +24,7 @@ module.exports = {
             const services = await Service.findById(serviceId)
                .sort({ date: -1 })
                .populate("admin")
+               .populate("orders")
                .exec();
             if (services) {
                return services;
@@ -49,6 +51,7 @@ module.exports = {
                const service = await Service.findById(newService)
                   .sort({ date: -1 })
                   .populate("admin")
+                  .populate("orders")
                   .exec();
                return service;
             } else {
