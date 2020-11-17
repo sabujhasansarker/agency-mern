@@ -1,4 +1,6 @@
 const Service = require("../../models/Service");
+const Order = require("../../models/Order");
+
 const { GraphQLError } = require("graphql");
 
 module.exports = {
@@ -65,6 +67,9 @@ module.exports = {
          try {
             let service = await Service.findById(serviceId);
             if (service) {
+               service.orders.map(
+                  async (s) => await Order.findByIdAndDelete(s)
+               );
                await Service.findByIdAndDelete(serviceId);
                return new GraphQLError("Service deleted");
             } else {
