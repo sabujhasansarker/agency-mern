@@ -13,10 +13,10 @@ const ServiceList = ({ services }) => {
             <table>
                <thead>
                   <tr>
-                     <th>Title</th>
-                     <th>Admin Email</th>
-                     <th>Number of order</th>
-                     <th>Details</th>
+                     <th style={{ width: "170px" }}>Title</th>
+                     <th style={{ width: "170px" }}>Admin Email</th>
+                     <th style={{ width: "133px" }}>Number of order</th>
+                     <th style={{ width: "33%" }}>Details</th>
                      <th>Action</th>
                   </tr>
                </thead>
@@ -24,10 +24,14 @@ const ServiceList = ({ services }) => {
                   {services &&
                      services.map((service) => (
                         <tr key={service.id}>
-                           <td>{service.title}</td>
-                           <td>{service.admin && service.admin.email}</td>
-                           <td>{service.orders && service.orders.length}</td>
-                           <td>{service.dec}</td>
+                           <td style={{ width: "170px" }}>{service.title}</td>
+                           <td style={{ width: "170px" }}>
+                              {service.admin && service.admin.email}
+                           </td>
+                           <td style={{ width: "133px", textAlign: "center" }}>
+                              {service.orders && service.orders.length}
+                           </td>
+                           <td style={{ width: "33%" }}>{service.dec}</td>
                            <td>
                               <div className="btn-delete">Delete</div>
                            </td>
