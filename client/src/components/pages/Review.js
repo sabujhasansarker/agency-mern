@@ -9,9 +9,12 @@ import { addReview } from "../../action/review";
 import { useMutation } from "@apollo/react-hooks";
 import { ADD_REVIEW, GET_REVIEW } from "../../graphQl/review";
 
+/// Components
+import Alert from "../layout/Alert";
+
 const Review = ({ auth: { displayName, photoURL }, addReview }) => {
    /// GraphQl
-   const [AddReview, {}] = useMutation(ADD_REVIEW, {
+   const [AddReview] = useMutation(ADD_REVIEW, {
       update(proxy, result) {
          const data = proxy.readQuery({
             query: GET_REVIEW,
@@ -37,18 +40,33 @@ const Review = ({ auth: { displayName, photoURL }, addReview }) => {
       des: "",
    });
 
+   /// Alert
+   const [alert, setAlert] = useState(null);
+
    const onChange = (e) =>
       setFormData({ ...formData, [e.target.name]: e.target.value });
 
    const onSubmit = (e) => {
       e.preventDefault();
-      AddReview({ variables: formData });
+      if (!formData.designation && !formData.des) {
+         setAlert({ msg: "All field are required ***", error: true });
+         clearAlert();
+      } else {
+         AddReview({ variables: formData });
+         setAlert({ msg: "Review add successfully ***", error: true });
+      }
    };
 
+   const clearAlert = () => {
+      setTimeout(() => {
+         setAlert(null);
+      }, 2000);
+   };
    return (
       <div className="admin client">
          <ClientNav active="Review" addOrderMenu={true} />
          <div className="admin-content">
+            {alert && <Alert alert={alert} />}
             <form className="form" onSubmit={(e) => onSubmit(e)}>
                <div className="form-group">
                   <div className="form-item">

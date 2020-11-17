@@ -9,7 +9,7 @@ const Footer = () => {
       name: "",
       message: "",
    });
-   const [SendMail, { data }] = useMutation(MAIL_SENT);
+   const [SendMail] = useMutation(MAIL_SENT);
 
    const { name, email, message } = formData;
    const onChange = (e) =>

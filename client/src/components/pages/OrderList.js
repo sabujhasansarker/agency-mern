@@ -7,7 +7,7 @@ import ClientNav from "../template/ClientNav";
 
 const OrderList = ({ orders, auth }) => {
    let ordersMatch = orders.filter(
-      (order) => order.email == auth.email && order
+      (order) => order.email === auth.email && order
    );
    return (
       <div className="admin client order-list">

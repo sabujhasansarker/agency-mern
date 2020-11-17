@@ -13,7 +13,7 @@ const Navbar = ({ auth, logOut, admins }) => {
    const toggle = useRef(false);
    const [toggleMenu, setToggleMenu] = useState(false);
    const adminMatch =
-      admins && admins.filter((admin) => auth && auth.email == admin.email);
+      admins && admins.find((admin) => auth && auth.email === admin.email);
 
    useEffect(() => {
       window.addEventListener("scroll", () =>
