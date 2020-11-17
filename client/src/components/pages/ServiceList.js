@@ -23,26 +23,16 @@ const ServiceList = ({ services }) => {
                <tbody>
                   {services &&
                      services.map((service) => (
-                        <tr key={service.id}>{/* <td>{service.}</td> */}</tr>
+                        <tr key={service.id}>
+                           <td>{service.title}</td>
+                           <td>{service.admin && service.admin.email}</td>
+                           <td>{service.orders && service.orders.length}</td>
+                           <td>{service.dec}</td>
+                           <td>
+                              <div className="btn-delete">Delete</div>
+                           </td>
+                        </tr>
                      ))}
-                  <tr>
-                     <td>Service Title</td>
-                     <td>sufi@gmail.com</td>
-                     <td>4</td>
-                     <td>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                     </td>
-                     <td>
-                        <select style={{ color: "#FF4545" }}>
-                           <option value="pending" style={{ color: "#FF4545" }}>
-                              Pending
-                           </option>
-                           <option value="done" style={{ color: "#009444" }}>
-                              Done
-                           </option>
-                        </select>
-                     </td>
-                  </tr>
                </tbody>
             </table>
          </div>

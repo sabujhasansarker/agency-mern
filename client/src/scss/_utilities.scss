@@ -18,6 +18,13 @@
 .btn-primary {
    @include btn($buttonColor, white);
 }
+.btn-delete {
+   @include btn(#ff4545, white);
+   padding: 10px;
+   &:hover {
+      background: darken(#ff4545, 10%);
+   }
+}
 
 a {
    text-decoration: none;

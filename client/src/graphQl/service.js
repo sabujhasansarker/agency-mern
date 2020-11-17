@@ -1,6 +1,6 @@
 import gql from "graphql-tag";
 
-const query = `id title icon dec admin {email}`;
+const query = `id title icon dec admin {email} orders{id}`;
 
 export const GET_SERVICES = gql`
    query getServices {
