@@ -71,7 +71,7 @@ module.exports = {
                   async (s) => await Order.findByIdAndDelete(s)
                );
                await Service.findByIdAndDelete(serviceId);
-               return new GraphQLError("Service deleted");
+               return "Service deleted";
             } else {
                throw new GraphQLError("Service not found");
             }
