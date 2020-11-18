@@ -11,7 +11,6 @@ const FeedBack = ({ reviews }) => {
       slidesToScroll: 3,
       arrows: false,
       centerPadding: "0px",
-      speed: 500,
       dots: false,
       adaptiveHeight: true,
       autoplay: true,

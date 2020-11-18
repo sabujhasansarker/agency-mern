@@ -12,12 +12,14 @@ const Navbar = ({ auth, logOut, admins }) => {
    const [scrollPosition, setScrollPosition] = useState(0);
    const toggle = useRef(false);
    const [toggleMenu, setToggleMenu] = useState(false);
-   const adminMatch =
-      admins && admins.find((admin) => auth && auth.email === admin.email);
+   const [adminMatch, setAdminMatch] = useState(null);
 
    useEffect(() => {
       window.addEventListener("scroll", () =>
          setScrollPosition(window.pageYOffset)
+      );
+      setAdminMatch(
+         admins && admins.find((admin) => auth && auth.email === admin.email)
       );
    }, []);
    const onClick = () => {
