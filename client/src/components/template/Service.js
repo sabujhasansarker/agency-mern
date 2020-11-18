@@ -32,7 +32,7 @@ const Service = ({ services }) => {
             <h2 className="heading">
                Provide awesome <span>services</span>
             </h2>
-            {services && services.length <= 3 && services ? (
+            {services && services.length === 1 && services ? (
                services.map((d, i) => (
                   <Link
                      to={`/add-order/${d.id}`}
