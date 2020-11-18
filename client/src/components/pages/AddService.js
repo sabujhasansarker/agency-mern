@@ -16,7 +16,7 @@ import Alert from "../layout/Alert";
 
 const AddService = ({ auth, admins, addService }) => {
    /// find admin id
-   const admin = admins && admins.find((admin) => admin.email == auth.email);
+   const admin = admins && admins.find((admin) => admin.email === auth.email);
 
    /// Formdata
    const [formData, setFormData] = useState({
@@ -28,7 +28,7 @@ const AddService = ({ auth, admins, addService }) => {
    const [alert, setAlert] = useState(null);
 
    /// Add service
-   const [AddService, {}] = useMutation(SERVICE_ADD, {
+   const [AddService] = useMutation(SERVICE_ADD, {
       update(proxy, result) {
          const data = proxy.readQuery({
             query: GET_SERVICES,

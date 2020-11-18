@@ -11,7 +11,7 @@ import { DELETE_SERVICE } from "../../graphQl/service";
 
 const ServiceList = ({ services, deleteService }) => {
    /// Delete Service
-   const [DeleteService, {}] = useMutation(DELETE_SERVICE);
+   const [DeleteService] = useMutation(DELETE_SERVICE);
 
    return (
       <div className="admin">

@@ -1,6 +1,5 @@
 import React from "react";
 import Slider from "react-slick";
-import phn from "../../images/iphone.png";
 
 /// Redux
 import { connect } from "react-redux";

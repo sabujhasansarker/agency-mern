@@ -17,7 +17,7 @@ const MakeAdmin = ({ admins, addAdmin }) => {
    const [alert, setAlert] = useState(null);
 
    /// Add order
-   const [AddAdmin, {}] = useMutation(ADD_ADMIN, {
+   const [AddAdmin] = useMutation(ADD_ADMIN, {
       update(proxy, result) {
          const data = proxy.readQuery({
             query: ADMIN_QUERY,
@@ -38,7 +38,7 @@ const MakeAdmin = ({ admins, addAdmin }) => {
 
    const onSubmit = (e) => {
       e.preventDefault();
-      if (admins.find((admin) => admin.email == formData.email)) {
+      if (admins.find((admin) => admin.email === formData.email)) {
          setAlert({ msg: "This email already exits", error: true });
          clearAlert();
       } else {

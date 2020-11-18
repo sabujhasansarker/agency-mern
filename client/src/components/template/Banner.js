@@ -12,7 +12,7 @@ const Banner = () => {
                   Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus
                   commodo ipsum duis laoreet maecenas. Feugiat
                </p>
-               <a href="" target="_blank" className="btn-primary">
+               <a href="/" target="_blank" className="btn-primary">
                   Hire us
                </a>
             </div>

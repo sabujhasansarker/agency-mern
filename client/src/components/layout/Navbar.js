@@ -13,6 +13,7 @@ const Navbar = ({ auth, logOut, admins }) => {
    const toggle = useRef(false);
    const [toggleMenu, setToggleMenu] = useState(false);
    const [adminMatch, setAdminMatch] = useState(null);
+   const [didMount, setDidMount] = useState(false);
 
    useEffect(() => {
       window.addEventListener("scroll", () =>
@@ -21,7 +22,9 @@ const Navbar = ({ auth, logOut, admins }) => {
       setAdminMatch(
          admins && admins.find((admin) => auth && auth.email === admin.email)
       );
-   }, []);
+      setDidMount(true);
+      return () => setDidMount(false);
+   }, [admins, auth]);
    const onClick = () => {
       toggle.current = !toggle.current;
       setToggleMenu(!toggleMenu);
@@ -29,6 +32,11 @@ const Navbar = ({ auth, logOut, admins }) => {
          ? document.body.classList.add("nav-open")
          : document.body.classList.remove("nav-open");
    };
+
+   if (!didMount) {
+      return null;
+   }
+
    return (
       <header className={`${scrollPosition > 100 ? "stick-nav" : ""}`}>
          <nav className="container">

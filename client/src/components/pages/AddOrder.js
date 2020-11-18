@@ -25,7 +25,7 @@ const AddOrder = ({
    const serviceId = match.params.serviceId;
 
    /// Add order
-   const [AddOrder, {}] = useMutation(ADD_ORDER, {
+   const [AddOrder] = useMutation(ADD_ORDER, {
       update(proxy, result) {
          const data = proxy.readQuery({
             query: GET_ORDERS_QUERY,

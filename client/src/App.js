@@ -32,15 +32,13 @@ import NotFound from "./components/layout/NotFound";
 const App = ({
    getOrders,
    getServices,
-   orders,
-   services,
    getUser,
    auth,
    getAdmins,
    admins,
    getReviews,
 }) => {
-   const { loading, data: servicesQuery } = useQuery(GET_SERVICES);
+   const { data: servicesQuery } = useQuery(GET_SERVICES);
    const { data: adminQuery } = useQuery(GET_ADMINS);
    const { data: reviewQuery } = useQuery(GET_REVIEW);
    const { data: ordersQuery } = useQuery(GET_ORDERS_QUERY);
@@ -50,7 +48,18 @@ const App = ({
       getAdmins(adminQuery && adminQuery.getAdmins);
       getReviews(reviewQuery && reviewQuery.getReviews);
       !auth && getUser();
-   }, [auth]);
+   }, [
+      auth,
+      getOrders,
+      adminQuery,
+      getAdmins,
+      getReviews,
+      reviewQuery,
+      getServices,
+      getUser,
+      ordersQuery,
+      servicesQuery,
+   ]);
 
    return (
       <Router>
@@ -61,7 +70,7 @@ const App = ({
                admins.map(
                   (admin, i) =>
                      auth &&
-                     auth.email == admin.email && (
+                     auth.email === admin.email && (
                         <Fragment key={i}>
                            <PrivateRoute
                               exact
